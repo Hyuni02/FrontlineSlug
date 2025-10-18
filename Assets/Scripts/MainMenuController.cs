@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour {
-    public enum e_type {
+    private enum e_type {
         main,
         newgame,
         loadgame,
@@ -28,8 +29,8 @@ public class MainMenuController : MonoBehaviour {
     private List<Button> buttonGroup;
     private e_type type = e_type.main;
     
-    public void btn_Click(string type) {
-        switch (type) {
+    public void btn_Click(string _type) {
+        switch (_type) {
             case "newgame":
                 click_NewGame();
                 break;
@@ -71,6 +72,9 @@ public class MainMenuController : MonoBehaviour {
         pnl_background.SetActive(true);
         pnl_background.GetComponent<UIBackground>().Active(pnl_newGame);
         Change_UI(e_type.newgame);
+        
+        //temp
+        SceneManager.LoadScene("InGame");
     }
 
     private void click_LoadGame() {
