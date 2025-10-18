@@ -24,7 +24,7 @@ public class InGameManager : MonoBehaviour {
             tileCount--;
         }
         
-        InstantiateTilemap();
+        //InstantiateTilemap();
     }
 
     private void InstantiateTilemap() {
