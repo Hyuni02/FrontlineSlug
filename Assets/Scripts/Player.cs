@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Spine;
 using Spine.Unity;
 using Spine.Unity.Examples;
 using UnityEngine;
+using Event = UnityEngine.Event;
 
 public class Player : MonoBehaviour {
     public enum CharacterState {
@@ -33,9 +35,18 @@ public class Player : MonoBehaviour {
     private string param_attack = "attack";
     private string param_attackCounter = "attackCounter";
 
+    
+    public GameObject pref_bullet;
+    public Transform trans_muzzle;
+
     public Spine.Animation TargetAnimation { get; private set; }
     public List<StateAnimationPair> lst_stateAnimation = new List<StateAnimationPair>();
 
+    [Header("Events")]
+    [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
+    public string evt_fire;
+    Spine.EventData eventData_fire;
+    
     void Start() {
         //set Component
         rigid = GetComponent<Rigidbody2D>();
@@ -49,6 +60,10 @@ public class Player : MonoBehaviour {
         
         //init variable
         vec_jump = new Vector2(0, jumpPower);
+        
+        
+        eventData_fire = skel.Skeleton.Data.FindEvent(evt_fire);
+        skel.AnimationState.Event += HandleAnimationStateEvent;
     }
 
     private void Update() {
@@ -88,6 +103,18 @@ public class Player : MonoBehaviour {
             durationCounter = attakDuration;
             animator.SetTrigger(param_attack);
             curr_state = CharacterState.attack;
+        }
+    }
+
+    public void Shoot() {
+        GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, LayerMask.NameToLayer("Enemy"), 4, 24, Vector2.right));
+    }
+    
+    private void HandleAnimationStateEvent (TrackEntry trackEntry, Spine.Event e) {
+        bool fire = (eventData_fire == e.Data); // Performance recommendation: Match cached reference instead of string.
+        if (fire) {
+            Shoot();
         }
     }
     
