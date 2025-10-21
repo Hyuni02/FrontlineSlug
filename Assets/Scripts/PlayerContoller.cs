@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerContoller : MonoBehaviour {
-    public Player player;
+    public Kar98k player;
 
     private float hori;
     private void Update() {
@@ -15,8 +15,6 @@ public class PlayerContoller : MonoBehaviour {
             player.Jump();
         }
 
-        if (Input.GetKey(KeyCode.Z)) {
-            player.Attack();
-        }
+        player.TryAttack(Input.GetKey(KeyCode.Z));
     }
 }
