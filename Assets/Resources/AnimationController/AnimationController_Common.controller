@@ -137,7 +137,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AnimationController_98k
+  m_Name: AnimationController_Common
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: attackPressed

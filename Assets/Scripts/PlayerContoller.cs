@@ -4,9 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerContoller : MonoBehaviour {
+    public static PlayerContoller instance;
+
     public Friendly player;
 
     private float hori;
+
+    private void Awake() {
+        if(instance != null) {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
+
     private void Update() {
         hori = Input.GetAxisRaw("Horizontal");
 

@@ -7,12 +7,7 @@ public class Ripper : Enemy {
         base.Start();
 
         speed = 3;
-        dmg = 1;
-        attackInterval = 5;
-    }
-
-    protected override void Update() {
-        base.Update();
-
+        dmg = 2;
+        attackInterval = 3;
     }
 }

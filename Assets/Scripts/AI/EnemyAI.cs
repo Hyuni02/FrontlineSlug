@@ -12,12 +12,14 @@ public class EnemyAI : MonoBehaviour
     }
 
     //플레이어 찾기
+    [HideInInspector]
     public GameObject player;
     public int range;
 
     private EnemyState prev_state = EnemyState.None;
     public EnemyState curr_state = EnemyState.None;
 
+    [HideInInspector]
     public Enemy enemy;
 
     public AIState curr_aiState;
@@ -31,6 +33,8 @@ public class EnemyAI : MonoBehaviour
         aiState_Attack = new AIState_Attack(this);
         aiState_Chase = new AIState_Chase(this);
         aiState_Die = new AIState_Die(this);
+
+        player = PlayerContoller.instance.player.gameObject;
     }
 
     private void Update() {
