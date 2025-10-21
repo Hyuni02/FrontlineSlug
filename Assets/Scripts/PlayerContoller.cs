@@ -4,17 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerContoller : MonoBehaviour {
-    public Kar98k player;
+    public Friendly player;
 
     private float hori;
     private void Update() {
         hori = Input.GetAxisRaw("Horizontal");
-        player.Move(hori);
-        
-        if (Input.GetKeyDown(KeyCode.X)) {
-            player.Jump();
-        }
 
-        player.TryAttack(Input.GetKey(KeyCode.Z));
+        if (Input.GetKey(KeyCode.Z)) {
+            player.TryAttack(true);
+        }
+        else {
+            player.TryAttack(false);
+            player.Move(hori);
+
+            if (Input.GetKeyDown(KeyCode.X)) {
+                player.Jump();
+            }
+        }
     }
 }

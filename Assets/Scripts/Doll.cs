@@ -1,8 +1,9 @@
+using Spine;
+using Spine.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Spine;
-using Spine.Unity;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using Event = UnityEngine.Event;
 
@@ -85,9 +86,13 @@ public abstract class Doll : MonoBehaviour {
 
         vec_move = new Vector2(hori * speed, rigid.velocity.y);
         rigid.velocity = vec_move;
-        if (hori != 0) skel.skeleton.ScaleX = hori > 0 ? 1 : -1;
+        if (hori != 0) FlipModel(hori < 0);
         animator.SetFloat(param_hori, Mathf.Abs(hori));
         curr_state = hori != 0 ? CharacterState.move : CharacterState.wait;
+    }
+
+    public void FlipModel(bool flip) {
+        skel.skeleton.ScaleX = flip ? -1 : 1;
     }
 
     public virtual void Jump() {
@@ -107,12 +112,12 @@ public abstract class Doll : MonoBehaviour {
 
     public virtual void Attack() {
         //점프 중 공격 불가 
-
-        rigid.velocity = Vector2.zero;
+        Move(0);
         intervalCounter = attackInterval;
         durationCounter = attakDuration;
         animator.SetTrigger(param_attack);
         curr_state = CharacterState.attack;
+        PlayAnimationForState("attack", 0);
     }
 
     public virtual void Hit(BulletData bulletData) {
@@ -124,7 +129,8 @@ public abstract class Doll : MonoBehaviour {
     }
     public virtual void Shoot() {
         GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
-        obj.GetComponent<Bullet>().init(new BulletData(gameObject, 51, 24, Vector2.right));
+        Vector2 dir = skel.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, 1, 24, dir));
     }
 
     #region Animation
