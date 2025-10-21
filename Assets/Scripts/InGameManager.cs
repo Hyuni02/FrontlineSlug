@@ -24,46 +24,18 @@ public class InGameManager : MonoBehaviour {
             tileCount--;
         }
         
-        //InstantiateTilemap();
+        InstantiateTilemap();
     }
 
     private void InstantiateTilemap() {
-        GameObject prevTile = null;
-        Vector3 pos_tile = Vector3.zero;
+        Vector2 prev_pos = Vector2.zero;
         for (int i = 0; i < lst_map.Count; i++) {
-            GameObject curTile = lst_map[i];
-            pos_tile = prevTile == null ? 
-                Vector3.zero : 
-                new Vector3(
-                prevTile.transform.position.x
-                + GetTilemapBoundLength(prevTile.GetComponent<Tilemap>()) * 0.5f
-                + GetTilemapBoundLength(curTile.GetComponent<Tilemap>()) * 0.5f,
-                0,
-                0
-            );
-            
-            print($"prev : {prevTile?.name} : {prevTile?.transform.position}");
-            print($"curr : {curTile.name} : {pos_tile}");
-            
-            GameObject tile = Instantiate(curTile, trans_grid);
-            tile.transform.position = pos_tile;
-            prevTile = tile;
-        }
-    }
-
-    private int GetTilemapBoundLength(Tilemap tilemap) {
-        BoundsInt bounds = tilemap.cellBounds;
-        int minX = int.MaxValue, maxX = int.MinValue;
-
-        foreach (Vector3Int pos in bounds.allPositionsWithin)
-        {
-            if (tilemap.HasTile(pos))
-            {
-                if (pos.x < minX) minX = pos.x;
-                if (pos.x > maxX) maxX = pos.x;
+            GameObject tileMap = Instantiate(lst_map[i], trans_grid);
+            TilemapData data = tileMap.GetComponent<TilemapData>();
+            if(data.startPos != null) {
+                tileMap.transform.position = prev_pos - (Vector2)data.startPos.position;
             }
+            prev_pos = data.endPos.position;
         }
-
-        return maxX - minX + 1;
     }
 }
