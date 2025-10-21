@@ -61,7 +61,7 @@ MonoBehaviour:
   - stateName: attack
     animation: {fileID: 11400000, guid: 52f31ddec20727146866d0ba98a0d44e, type: 2}
   - stateName: die
-    animation: {fileID: 11400000, guid: 7c90ff40aca591b4cb950e3922d34c90, type: 2}
+    animation: {fileID: 11400000, guid: f2d47b5c7b07797499c6e41427917d3f, type: 2}
   evt_fire: fire
   currHP: 100
   dmg: 10
@@ -107,8 +107,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.5, y: 1}
+  m_Offset: {x: 0, y: -0.24896836}
+  m_Size: {x: 0.72, y: 1.5020633}
   m_Direction: 0
 --- !u!50 &1819659287884288338
 Rigidbody2D:
@@ -127,7 +127,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 6
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 2
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
