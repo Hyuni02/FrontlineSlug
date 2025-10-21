@@ -27,6 +27,7 @@ public abstract class Doll : MonoBehaviour {
 
     public GameObject pref_bullet;
     protected Transform trans_muzzle;
+    protected GroundChecker groundChecker;
 
     protected CharacterState prev_state = CharacterState.none;
     [SerializeField]
@@ -55,6 +56,7 @@ public abstract class Doll : MonoBehaviour {
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         skel = GetComponentInChildren<SkeletonAnimation>();
+        groundChecker = GetComponentInChildren<GroundChecker>();
 
         //init animation
         foreach (var entry in lst_stateAnimation) {
@@ -80,6 +82,7 @@ public abstract class Doll : MonoBehaviour {
         }
     }
 
+    #region Movement
     public virtual void Move(float hori) {
         if (curr_state == CharacterState.die) return;
         if (durationCounter > 0) return;
@@ -91,17 +94,16 @@ public abstract class Doll : MonoBehaviour {
         curr_state = hori != 0 ? CharacterState.move : CharacterState.wait;
     }
 
-    public void FlipModel(bool flip) {
-        skel.skeleton.ScaleX = flip ? -1 : 1;
-    }
-
     public virtual void Jump() {
         if (durationCounter > 0) return;
+        if (!IsGrounded()) return;
 
         rigid.velocity = new Vector2(rigid.velocity.x, 0);
         rigid.AddForce(vec_jump);
     }
+    #endregion
 
+    #region Attack
     public virtual void TryAttack(bool isPressed) {
         animator.SetBool(param_attackPressed, isPressed);
 
@@ -117,23 +119,29 @@ public abstract class Doll : MonoBehaviour {
         durationCounter = attakDuration;
         animator.SetTrigger(param_attack);
         curr_state = CharacterState.attack;
-        PlayAnimationForState("attack", 0);
+        PlayAnimationForState("attack", 0); //상태가 바뀌지 않지만 애니메이션은 출력해야 함
     }
 
-    public virtual void Hit(BulletData bulletData) {
-        currHP -= bulletData.dmg;
-        if (currHP <= 0) {
-            curr_state = CharacterState.die;
-            print($"{gameObject.name} died.");
-        }
-    }
     public virtual void Shoot() {
         GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
         Vector2 dir = skel.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
         obj.GetComponent<Bullet>().init(new BulletData(gameObject, 1, 24, dir));
     }
 
-    #region Animation
+    public virtual void Hit(BulletData bulletData) {
+        currHP -= bulletData.dmg;
+        if (currHP <= 0) {
+            curr_state = CharacterState.die;
+            Die();
+        }
+    }
+
+    public virtual void Die(int delay = 2) {
+        Destroy(gameObject, delay);
+    }
+    #endregion
+
+    #region Animation & Model
     private void HandleAnimationStateEvent(TrackEntry trackEntry, Spine.Event e) {
         bool fire = (eventData_fire == e.Data); // Performance recommendation: Match cached reference instead of string.
         if (fire) {
@@ -199,6 +207,14 @@ public abstract class Doll : MonoBehaviour {
 
     private int StringToHash(string s) {
         return Animator.StringToHash(s);
+    }
+
+    public void FlipModel(bool flip) {
+        skel.skeleton.ScaleX = flip ? -1 : 1;
+    }
+
+    protected bool IsGrounded() {
+        return groundChecker.isGrounded;
     }
     #endregion
 }
