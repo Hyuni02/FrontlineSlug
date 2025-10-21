@@ -21,5 +21,13 @@ public class PlayerContoller : MonoBehaviour {
                 player.Jump();
             }
         }
+
+
+        //temp
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            foreach(var enemy in FindObjectsOfType<Enemy>()) {
+                enemy.activate = true;
+            }
+        }
     }
 }

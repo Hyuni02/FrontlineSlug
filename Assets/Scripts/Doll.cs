@@ -44,9 +44,11 @@ public abstract class Doll : MonoBehaviour {
     protected int maxHP = 100;
     [SerializeField]
     protected int currHP = 100;
+    [SerializeField]
+    protected int dmg = 10;
     protected float speed = 7;
     protected int jumpPower = 800;
-    protected float attackInterval = 1.5f;
+    protected float attackInterval = .5f;
     protected float intervalCounter = 0;
     protected float attakDuration = 0.5f;
     protected float durationCounter = 0;
@@ -125,7 +127,7 @@ public abstract class Doll : MonoBehaviour {
     public virtual void Shoot() {
         GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
         Vector2 dir = skel.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
-        obj.GetComponent<Bullet>().init(new BulletData(gameObject, 1, 24, dir));
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
     }
 
     public virtual void Hit(BulletData bulletData) {
@@ -137,6 +139,8 @@ public abstract class Doll : MonoBehaviour {
     }
 
     public virtual void Die(int delay = 2) {
+        vec_move = new Vector2(0, rigid.velocity.y);
+        rigid.velocity = vec_move;
         Destroy(gameObject, delay);
     }
     #endregion
