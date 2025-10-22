@@ -6,6 +6,7 @@ public class EnemyAI : MonoBehaviour
 {
     public enum EnemyState {
         None,
+        Wait,
         Chase,
         Attack,
         Die
@@ -17,7 +18,7 @@ public class EnemyAI : MonoBehaviour
     public int range;
 
     private EnemyState prev_state = EnemyState.None;
-    public EnemyState curr_state = EnemyState.None;
+    public EnemyState curr_state = EnemyState.Wait;
 
     [HideInInspector]
     public Enemy enemy;
@@ -25,21 +26,26 @@ public class EnemyAI : MonoBehaviour
     public AIState curr_aiState;
     public AIState aiState_Chase;
     public AIState aiState_Attack;
+    public AIState aiState_Wait;
     public AIState aiState_Die;
 
+    public bool activate = false;
+    
     private void Start() {
         enemy = GetComponent<Enemy>();
 
         aiState_Attack = new AIState_Attack(this);
         aiState_Chase = new AIState_Chase(this);
+        aiState_Wait = new AIState_Wait(this);
         aiState_Die = new AIState_Die(this);
 
         player = PlayerContoller.instance.player.gameObject;
+        
+        StateChanged();
     }
 
     private void Update() {
         if (curr_state == EnemyState.Die) return;
-        if (!enemy.activate) return;
 
         SelectState();
 
@@ -52,7 +58,16 @@ public class EnemyAI : MonoBehaviour
     }
 
     //적 상태 : 추적, 공격
-    private void SelectState() {
+    protected virtual void SelectState() {
+        if (enemy.currHP <= 0) {
+            curr_state = EnemyState.Die;
+        }
+        
+        if (!activate) {
+            curr_state = EnemyState.Wait;
+            return;
+        }
+        
         var distance = Vector2.Distance(player.transform.position, transform.position);
         if (distance > range) {
             curr_state = EnemyState.Chase;
@@ -69,6 +84,15 @@ public class EnemyAI : MonoBehaviour
         }
         else if(curr_state == EnemyState.Attack) {
             curr_aiState = aiState_Attack;
+        }
+        else if (curr_state == EnemyState.Wait) {
+            curr_aiState = aiState_Wait;
+        }
+        else if (curr_state == EnemyState.Die) {
+            curr_aiState = aiState_Die;
+        }
+        else if (curr_state == EnemyState.None) {
+            return;
         }
         curr_aiState.Enter();
     }

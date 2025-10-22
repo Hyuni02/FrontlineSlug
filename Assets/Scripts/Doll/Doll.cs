@@ -31,7 +31,7 @@ public abstract class Doll : MonoBehaviour {
 
     protected CharacterState prev_state = CharacterState.none;
     [SerializeField]
-    protected CharacterState curr_state = CharacterState.none;
+    protected CharacterState curr_state = CharacterState.wait;
 
     public Spine.Animation TargetAnimation { get; private set; }
     public List<StateAnimationPair> lst_stateAnimation = new List<StateAnimationPair>();
@@ -43,7 +43,7 @@ public abstract class Doll : MonoBehaviour {
 
     protected int maxHP = 100;
     [SerializeField]
-    protected int currHP = 100;
+    public int currHP = 100;
     [SerializeField]
     protected int dmg = 10;
     protected float speed = 7;
@@ -74,6 +74,8 @@ public abstract class Doll : MonoBehaviour {
     }
 
     protected virtual void Update() {
+        if (prev_state == CharacterState.die) return;
+        
         intervalCounter -= Time.deltaTime;
         durationCounter -= Time.deltaTime;
         animator.SetFloat(param_attackCounter, durationCounter);
@@ -115,13 +117,13 @@ public abstract class Doll : MonoBehaviour {
     }
 
     public virtual void Attack() {
-        //Á¡ÇÁ Áß °ø°İ ºÒ°¡ 
+        //ì í”„ ì¤‘ ê³µê²© ë¶ˆê°€ 
         Move(0);
         intervalCounter = attackInterval;
         durationCounter = attakDuration;
         animator.SetTrigger(param_attack);
         curr_state = CharacterState.attack;
-        PlayAnimationForState("attack", 0); //»óÅÂ°¡ ¹Ù²îÁö ¾ÊÁö¸¸ ¾Ö´Ï¸ŞÀÌ¼ÇÀº Ãâ·ÂÇØ¾ß ÇÔ
+        PlayAnimationForState("attack", 0); //ìƒíƒœê°€ ë°”ë€Œì§€ ì•Šì§€ë§Œ ì• ë‹ˆë©”ì´ì…˜ì€ ì¶œë ¥í•´ì•¼ í•¨
     }
 
     public virtual void Shoot() {

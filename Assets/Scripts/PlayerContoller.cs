@@ -36,7 +36,7 @@ public class PlayerContoller : MonoBehaviour {
 
         //temp
         if (Input.GetKeyDown(KeyCode.Space)) {
-            foreach(var enemy in FindObjectsOfType<Enemy>()) {
+            foreach(var enemy in FindObjectsOfType<EnemyAI>()) {
                 enemy.activate = true;
             }
         }

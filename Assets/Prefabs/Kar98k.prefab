@@ -80,11 +80,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1772788606149591408}
+  - component: {fileID: 1772788606149591409}
+  - component: {fileID: 1772788606149591410}
   - component: {fileID: 1772788606149591406}
   - component: {fileID: 1772788606149591405}
-  - component: {fileID: 1772788606149591409}
   - component: {fileID: 1772788606149591407}
-  - component: {fileID: 1772788606149591410}
   m_Layer: 6
   m_Name: Kar98k
   m_TagString: Untagged
@@ -109,6 +109,44 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1772788606149591409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772788606149591404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06f53f8726334964faecba09c27e1de6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pref_bullet: {fileID: 5910412370262980767, guid: 48e76f7530e6ecd48967e66565715a08, type: 3}
+  curr_state: 0
+  lst_stateAnimation:
+  - stateName: wait
+    animation: {fileID: 11400000, guid: 2efe12d1c79263244aac46ea8a2c2346, type: 2}
+  - stateName: move
+    animation: {fileID: 11400000, guid: 5c0e743d8f16b104396d7c3b44fe931e, type: 2}
+  - stateName: attack
+    animation: {fileID: 11400000, guid: 50dc56d40603d724bb7271440a413ce6, type: 2}
+  - stateName: die
+    animation: {fileID: 11400000, guid: 5c6ace32e76f1f148ac0e13fa6e70e3d, type: 2}
+  evt_fire: fire
+  currHP: 100
+  dmg: 10
+--- !u!114 &1772788606149591410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772788606149591404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2f74009559d18942b2e16283b3522e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!70 &1772788606149591406
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,32 +184,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1772788606149591409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772788606149591404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 06f53f8726334964faecba09c27e1de6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pref_bullet: {fileID: 5910412370262980767, guid: 48e76f7530e6ecd48967e66565715a08, type: 3}
-  curr_state: 0
-  lst_stateAnimation:
-  - stateName: wait
-    animation: {fileID: 11400000, guid: 2efe12d1c79263244aac46ea8a2c2346, type: 2}
-  - stateName: move
-    animation: {fileID: 11400000, guid: 5c0e743d8f16b104396d7c3b44fe931e, type: 2}
-  - stateName: attack
-    animation: {fileID: 11400000, guid: 50dc56d40603d724bb7271440a413ce6, type: 2}
-  - stateName: die
-    animation: {fileID: 11400000, guid: 5c6ace32e76f1f148ac0e13fa6e70e3d, type: 2}
-  evt_fire: fire
-  currHP: 100
-  dmg: 10
 --- !u!95 &1772788606149591407
 Animator:
   serializedVersion: 3
@@ -191,18 +203,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1772788606149591410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772788606149591404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2f74009559d18942b2e16283b3522e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1772788606382763067
 GameObject:
   m_ObjectHideFlags: 0
