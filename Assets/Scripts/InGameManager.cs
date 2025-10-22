@@ -1,9 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using Random = UnityEngine.Random;
 
 public class InGameManager : MonoBehaviour {
+    public static InGameManager instance;
+    
     [Header("Tilemps")]
     public Transform trans_grid;
     private List<GameObject> lst_map = new List<GameObject>();
@@ -13,7 +17,19 @@ public class InGameManager : MonoBehaviour {
     public List<GameObject> pref_lst_map;
     public List<GameObject> pref_lst_event;
     public GameObject pref_boss;
+
+    public Transform trans_Canvas;
     
+    private int level = 0;
+
+    private void Awake() {
+        if(instance != null) {
+            Destroy(gameObject);
+            return;
+        }
+        instance = this;
+    }
+
     void Start()
     {
         lst_map.Add(pref_start);
@@ -37,5 +53,10 @@ public class InGameManager : MonoBehaviour {
             }
             prev_pos = data.endPos.position;
         }
+    }
+
+    public void ToNextLevel() {
+        level++;
+        print(level);
     }
 }
