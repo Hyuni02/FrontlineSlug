@@ -10978,14 +10978,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trans_grid: {fileID: 1629537380}
-  pref_start: {fileID: 6479087305136112866, guid: 095dbc2b96d4b4e4d87f7d5e37b772dc, type: 3}
-  pref_lst_map:
-  - {fileID: 9044824394032510295, guid: 6e6301d1c1e088345a19064bb8756e74, type: 3}
-  - {fileID: 7007119822861378096, guid: 40678e2e1b263da45b9093f4475b7fea, type: 3}
-  - {fileID: 7221281519778205280, guid: c028214ca4d6fe94a8b7ceed3578c689, type: 3}
-  - {fileID: 4740001394095280261, guid: d8d9ad2255da88f4c97ef10e8cf2c4f2, type: 3}
+  pref_lst_start: []
+  pref_lst_battle: []
   pref_lst_event: []
-  pref_boss: {fileID: 0}
+  pref_lst_boss: []
+  pre_lst_rescue: []
   trans_Canvas: {fileID: 566726711}
 --- !u!4 &1197166471
 Transform:
