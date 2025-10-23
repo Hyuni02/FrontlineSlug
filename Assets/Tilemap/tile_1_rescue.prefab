@@ -1,5 +1,65 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1264932264943372074
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7523302683090801761}
+  m_Layer: 10
+  m_Name: end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7523302683090801761
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1264932264943372074}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 9, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9109574559639096214}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2393563113860063633
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4156993829858041861}
+  m_Layer: 10
+  m_Name: start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4156993829858041861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2393563113860063633}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -9, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 9109574559639096214}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9109574559639096215
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,6 +74,7 @@ GameObject:
   - component: {fileID: 9109574559639096213}
   - component: {fileID: 9109574559639096209}
   - component: {fileID: 9109574559639096210}
+  - component: {fileID: -720020484156913704}
   m_Layer: 10
   m_Name: tile_1_rescue
   m_TagString: Untagged
@@ -31,7 +92,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4156993829858041861}
+  - {fileID: 7523302683090801761}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -606,59 +669,34 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 9109574559639096213}
     m_ColliderPaths:
-    - - X: 90000100
-        Y: -40000041
-      - X: 90000100
-        Y: -30000100
-      - X: 89999959
-        Y: -30000100
-      - X: 89999900
-        Y: -30000041
-      - X: 89999900
+    - - X: 90000000
         Y: -20000000
-      - X: 80000100
-        Y: -20000000
-      - X: 80000100
-        Y: -20000041
-      - X: 80000041
-        Y: -20000100
-      - X: 100
-        Y: -20000100
-      - X: 100
-        Y: -19999959
-      - X: 41
-        Y: -19999900
-      - X: -10000041
-        Y: -19999900
-      - X: -10000100
-        Y: -19999959
-      - X: -10000100
-        Y: -20000000
-      - X: -49999900
-        Y: -20000000
-      - X: -49999900
-        Y: -20000041
-      - X: -49999959
-        Y: -20000100
       - X: -90000000
-        Y: -20000100
+        Y: -20000000
       - X: -90000000
-        Y: -29999900
-      - X: -90000041
-        Y: -29999900
-      - X: -90000100
-        Y: -29999959
-      - X: -90000100
-        Y: -40000041
-      - X: -90000041
-        Y: -40000100
-      - X: 90000041
-        Y: -40000100
+        Y: -40000000
+      - X: 90000000
+        Y: -40000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 8.999974, y: -4.00001}
-      - {x: 8.999961, y: -2}
-      - {x: -9, y: -2.0000393}
-      - {x: -8.999974, y: -4.00001}
+    - - {x: 8.99997, y: -4}
+      - {x: 8.99997, y: -2}
+      - {x: -9, y: -2.0000293}
+      - {x: -8.99997, y: -4}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &-720020484156913704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109574559639096215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dec595e1cb0793742b185ca13e751250, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  level: 1
+  startPos: {fileID: 4156993829858041861}
+  endPos: {fileID: 7523302683090801761}

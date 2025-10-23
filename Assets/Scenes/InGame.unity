@@ -10980,10 +10980,20 @@ MonoBehaviour:
   trans_grid: {fileID: 1629537380}
   pref_lst_start:
   - {fileID: 6479087305136112866, guid: 095dbc2b96d4b4e4d87f7d5e37b772dc, type: 3}
-  pref_lst_battle: []
-  pref_lst_event: []
-  pref_lst_boss: []
-  pre_lst_rescue: []
+  - {fileID: 9044824394032510295, guid: 6e6301d1c1e088345a19064bb8756e74, type: 3}
+  pref_lst_battle:
+  - {fileID: 7007119822861378096, guid: 40678e2e1b263da45b9093f4475b7fea, type: 3}
+  - {fileID: 7007119822861378096, guid: 4d78dd4ea2fb26249a3882a0dbcde33e, type: 3}
+  - {fileID: 7007119822861378096, guid: 967fda776587dc444bd00fb4b96bcb60, type: 3}
+  - {fileID: 7007119822861378096, guid: f70407d3a5984244fb73a009d0c956ff, type: 3}
+  - {fileID: 9109574559639096215, guid: 6ccae28fe3cfc52428698d13b261f8c7, type: 3}
+  pref_lst_event:
+  - {fileID: 7221281519778205280, guid: c028214ca4d6fe94a8b7ceed3578c689, type: 3}
+  pref_lst_boss:
+  - {fileID: 9109574559639096215, guid: b7dd76c4ef1f9fc468ffb78ce9e941a3, type: 3}
+  - {fileID: 9109574559639096215, guid: 70bb8f5e2fa029f429892b76dde6f0b8, type: 3}
+  pre_lst_rescue:
+  - {fileID: 9109574559639096215, guid: 6e4d43ffb5c90ee4ebd1e6ccc15fca7e, type: 3}
   trans_Canvas: {fileID: 566726711}
 --- !u!4 &1197166471
 Transform:

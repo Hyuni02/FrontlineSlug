@@ -37,6 +37,7 @@ public class InGameManager : MonoBehaviour {
         }
         
         level = PlayerPrefs.GetInt("level");
+        print("Map : " + level);
     }
 
     void Start() {
@@ -93,7 +94,6 @@ public class InGameManager : MonoBehaviour {
     public void ToNextLevel() {
         level++;
         PlayerPrefs.SetInt("level", level);
-        print(level);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("InGameScene");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
     }
 }

@@ -28,36 +28,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6689338059412821103}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2093993591
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2093993592}
-  m_Layer: 10
-  m_Name: start
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2093993592
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2093993591}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 6689338059412821103}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9044824394032510295
@@ -93,7 +63,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2093993592}
   - {fileID: 1813760162}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1309,51 +1278,31 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 8223849962010543648}
     m_ColliderPaths:
-    - - X: -79999959
-        Y: 100
-      - X: -90000041
-        Y: 100
-      - X: -90000100
-        Y: 41
-      - X: -90000100
-        Y: -20000041
-      - X: -90000041
-        Y: -20000100
-      - X: -90000000
-        Y: -20000100
-      - X: -90000000
+    - - X: 390000000
         Y: -40000000
       - X: 390000000
+        Y: 0
+      - X: 380000000
+        Y: 0
+      - X: 380000000
+        Y: -20000000
+      - X: -80000000
+        Y: -20000000
+      - X: -80000000
+        Y: 0
+      - X: -90000000
+        Y: 0
+      - X: -90000000
         Y: -40000000
-      - X: 390000000
-        Y: -20000100
-      - X: 390000041
-        Y: -20000100
-      - X: 390000100
-        Y: -20000041
-      - X: 390000100
-        Y: 41
-      - X: 390000041
-        Y: 100
-      - X: 379999959
-        Y: 100
-      - X: 379999900
-        Y: 41
-      - X: 379999900
-        Y: -20000000
-      - X: -79999900
-        Y: -20000000
-      - X: -79999900
-        Y: 41
   m_CompositePaths:
     m_Paths:
     - - {x: 38.999973, y: -4}
-      - {x: 38.999973, y: 0.00001}
-      - {x: 37.999992, y: -0.0000252}
-      - {x: 37.99996, y: -2}
-      - {x: -7.9999905, y: -1.9999707}
-      - {x: -8.000026, y: 0.00001}
-      - {x: -9.00001, y: -0.0000252}
+      - {x: 38.999973, y: 0}
+      - {x: 38, y: -0.000029300001}
+      - {x: 37.999973, y: -2}
+      - {x: -8, y: -1.9999707}
+      - {x: -8.00003, y: 0}
+      - {x: -9, y: -0.000029300001}
       - {x: -8.99997, y: -4}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
@@ -1369,5 +1318,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec595e1cb0793742b185ca13e751250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {fileID: 2093993592}
+  level: 1
+  startPos: {fileID: 0}
   endPos: {fileID: 1813760162}
