@@ -616,7 +616,7 @@ GameObject:
   - component: {fileID: 6479087305136112864}
   - component: {fileID: 1272271491916715476}
   m_Layer: 10
-  m_Name: tile_Tutorial
+  m_Name: tile_0_Start
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

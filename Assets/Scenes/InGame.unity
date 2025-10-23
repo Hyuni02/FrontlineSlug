@@ -10978,7 +10978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trans_grid: {fileID: 1629537380}
-  pref_lst_start: []
+  pref_lst_start:
+  - {fileID: 6479087305136112866, guid: 095dbc2b96d4b4e4d87f7d5e37b772dc, type: 3}
   pref_lst_battle: []
   pref_lst_event: []
   pref_lst_boss: []

@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 4676032685787756494}
   - component: {fileID: 7580782359626410087}
   m_Layer: 10
-  m_Name: Tilemap (2)
+  m_Name: tile_1_battle2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -31,6 +31,12 @@ public class InGameManager : MonoBehaviour {
             return;
         }
         instance = this;
+
+        if(!PlayerPrefs.HasKey("level")){
+            PlayerPrefs.SetInt("level", 0);
+        }
+        
+        level = PlayerPrefs.GetInt("level");
     }
 
     void Start() {
@@ -86,6 +92,8 @@ public class InGameManager : MonoBehaviour {
 
     public void ToNextLevel() {
         level++;
+        PlayerPrefs.SetInt("level", level);
         print(level);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("InGameScene");
     }
 }
