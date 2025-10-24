@@ -1,10 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 public class InGameManager : MonoBehaviour {
@@ -19,7 +15,7 @@ public class InGameManager : MonoBehaviour {
     public List<GameObject> pref_lst_battle;
     public List<GameObject> pref_lst_event;
     public List<GameObject> pref_lst_boss;
-    public List<GameObject> pre_lst_rescue;
+    public List<GameObject> pref_lst_rescue;
 
     public Transform trans_Canvas;
 
@@ -32,10 +28,10 @@ public class InGameManager : MonoBehaviour {
         }
         instance = this;
 
-        if(!PlayerPrefs.HasKey("level")){
+        if (!PlayerPrefs.HasKey("level")) {
             PlayerPrefs.SetInt("level", 0);
         }
-        
+
         level = PlayerPrefs.GetInt("level");
         print("Map : " + level);
     }
@@ -43,13 +39,9 @@ public class InGameManager : MonoBehaviour {
     void Start() {
         //Start Point
         SelectFromTilemaps(ref pref_lst_start);
-
         if (level != 0) {
             //Tutorial Battle Point
             SelectFromTilemaps(ref pref_lst_battle, 1, 2);
-
-            //1st Battle Point
-            SelectFromTilemaps(ref pref_lst_battle, 2, 3);
 
             //Event Point
             SelectFromTilemaps(ref pref_lst_event);
@@ -58,14 +50,16 @@ public class InGameManager : MonoBehaviour {
             SelectFromTilemaps(ref pref_lst_battle, 1, 3);
 
             //Boss Point
-            SelectFromTilemaps(ref pref_lst_event);
+            SelectFromTilemaps(ref pref_lst_boss);
 
             //Rescue Point
-            SelectFromTilemaps(ref pref_lst_battle);
+            SelectFromTilemaps(ref pref_lst_rescue);
         }
 
         //Generate Tilemap
-        InstantiateTilemap();
+        Vector2 clampx = InstantiateTilemap(); 
+        
+        CameraController.instance.SetCameraClamp(new Vector2(clampx.x - 9, 15), Vector2.zero);
     }
 
     private void SelectFromTilemaps(ref List<GameObject> from, int min = 1, int max = 2) {
@@ -79,7 +73,7 @@ public class InGameManager : MonoBehaviour {
         }
     }
 
-    private void InstantiateTilemap() {
+    private Vector2 InstantiateTilemap() {
         Vector2 prev_pos = Vector2.zero;
         for (int i = 0; i < lst_map.Count; i++) {
             GameObject tileMap = Instantiate(lst_map[i], trans_grid);
@@ -89,6 +83,7 @@ public class InGameManager : MonoBehaviour {
             }
             prev_pos = data.endPos.position;
         }
+        return prev_pos;
     }
 
     public void ToNextLevel() {

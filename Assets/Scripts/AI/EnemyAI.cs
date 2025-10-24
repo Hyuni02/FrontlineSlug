@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
     public enum EnemyState {
         None,
         Wait,
+        Patrol,
         Chase,
         Attack,
         Die
@@ -16,6 +17,7 @@ public class EnemyAI : MonoBehaviour
     [HideInInspector]
     public GameObject player;
     public int range;
+    public bool patrol;
 
     private EnemyState prev_state = EnemyState.None;
     public EnemyState curr_state = EnemyState.Wait;
@@ -25,6 +27,7 @@ public class EnemyAI : MonoBehaviour
 
     public AIState curr_aiState;
     public AIState aiState_Chase;
+    public AIState aiState_Patrol;
     public AIState aiState_Attack;
     public AIState aiState_Wait;
     public AIState aiState_Die;
@@ -36,6 +39,7 @@ public class EnemyAI : MonoBehaviour
 
         aiState_Attack = new AIState_Attack(this);
         aiState_Chase = new AIState_Chase(this);
+        aiState_Patrol = new AIState_Patrol(this);
         aiState_Wait = new AIState_Wait(this);
         aiState_Die = new AIState_Die(this);
 
@@ -70,7 +74,10 @@ public class EnemyAI : MonoBehaviour
         
         var distance = Vector2.Distance(player.transform.position, transform.position);
         if (distance > range) {
-            curr_state = EnemyState.Chase;
+            if (patrol)
+                curr_state = EnemyState.Patrol;
+            else
+                curr_state = EnemyState.Chase;
         }
         else {
             curr_state = EnemyState.Attack;
@@ -84,6 +91,9 @@ public class EnemyAI : MonoBehaviour
         }
         else if(curr_state == EnemyState.Attack) {
             curr_aiState = aiState_Attack;
+        }
+        else if(curr_state == EnemyState.Patrol) {
+            curr_aiState = aiState_Patrol;
         }
         else if (curr_state == EnemyState.Wait) {
             curr_aiState = aiState_Wait;

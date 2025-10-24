@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -149,6 +150,21 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb9fb697d67dea94e89197b6d1fcc35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 4, y: 0, z: 0}
+  clampMax: {x: 0, y: 0}
+  clampMin: {x: 0, y: 0}
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -10867,6 +10883,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: dda74bf3b6f8975449c615434310cbac, type: 2}
   - m_RefCount: 6
     m_Data: {fileID: 11400000, guid: c4b99341b083db343b56e1e25fdc1906, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 370
     m_Data: {fileID: 21300072, guid: 962e67ff7370f0c4492dca70b64f89e9, type: 3}
@@ -10902,6 +10920,8 @@ Tilemap:
     m_Data: {fileID: 21300116, guid: 962e67ff7370f0c4492dca70b64f89e9, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 21300118, guid: 962e67ff7370f0c4492dca70b64f89e9, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
   - m_RefCount: 1036
     m_Data:
@@ -10928,7 +10948,7 @@ Tilemap:
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -9, y: -5, z: 0}
-  m_Size: {x: 74, y: 14, z: 1}
+  m_Size: {x: 93, y: 14, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -10991,8 +11011,8 @@ MonoBehaviour:
   - {fileID: 7221281519778205280, guid: c028214ca4d6fe94a8b7ceed3578c689, type: 3}
   pref_lst_boss:
   - {fileID: 9109574559639096215, guid: b7dd76c4ef1f9fc468ffb78ce9e941a3, type: 3}
-  - {fileID: 9109574559639096215, guid: 70bb8f5e2fa029f429892b76dde6f0b8, type: 3}
-  pre_lst_rescue:
+  - {fileID: 9109574559639096215, guid: de67f9f54cc80a1448bd711aef9a5175, type: 3}
+  pref_lst_rescue:
   - {fileID: 9109574559639096215, guid: 6e4d43ffb5c90ee4ebd1e6ccc15fca7e, type: 3}
   trans_Canvas: {fileID: 566726711}
 --- !u!4 &1197166471
@@ -11053,6 +11073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1115703057}
+  hori: 0
 --- !u!1 &1629537378
 GameObject:
   m_ObjectHideFlags: 0

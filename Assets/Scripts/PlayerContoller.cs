@@ -8,7 +8,8 @@ public class PlayerContoller : MonoBehaviour {
 
     public Friendly player;
 
-    private float hori;
+    [HideInInspector]
+    public float hori;
 
     private void Awake() {
         if(instance != null) {

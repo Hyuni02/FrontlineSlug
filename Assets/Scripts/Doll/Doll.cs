@@ -105,6 +105,12 @@ public abstract class Doll : MonoBehaviour {
         rigid.velocity = new Vector2(rigid.velocity.x, 0);
         rigid.AddForce(vec_jump);
     }
+
+    public bool TouchWall() {
+        var dir = skel.skeleton.ScaleX == 1 ? Vector2.right : Vector2.left;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1, LayerMask.GetMask("Tilemap"));
+        return hit.collider != null;
+    }
     #endregion
 
     #region Attack
