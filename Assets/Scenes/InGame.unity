@@ -11549,6 +11549,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trans_grid: {fileID: 1629537380}
+  lst_rescuable:
+  - name: Kar98k
+    doll: {fileID: 0}
+  - name: Vector
+    doll: {fileID: 0}
+  - name: HK416
+    doll: {fileID: 0}
+  - name: M4SOPMODII
+    doll: {fileID: 0}
   pref_lst_start:
   - {fileID: 6479087305136112866, guid: 095dbc2b96d4b4e4d87f7d5e37b772dc, type: 3}
   - {fileID: 9044824394032510295, guid: 6e6301d1c1e088345a19064bb8756e74, type: 3}

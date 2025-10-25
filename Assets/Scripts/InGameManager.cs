@@ -1,15 +1,27 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+[Serializable]
+public class StringSpine {
+    public string name;
+    public GameObject doll;
+}
+
 public class InGameManager : MonoBehaviour {
     public static InGameManager instance;
 
+    [Header("Player")]
+    public List<GameObject> lst_player;
     [Header("Tilemps")]
     public Transform trans_grid;
     private List<GameObject> lst_map = new List<GameObject>();
 
+    [Header("Rescuable Dolls")]
+    public List<StringSpine> lst_rescuable;
+    
     [Header("Prefabs")]
     public List<GameObject> pref_lst_start;
     public List<GameObject> pref_lst_battle;
@@ -28,10 +40,7 @@ public class InGameManager : MonoBehaviour {
         }
         instance = this;
 
-        if (!PlayerPrefs.HasKey("level")) {
-            PlayerPrefs.SetInt("level", 0);
-        }
-
+        print(PlayerPrefs.GetString("main"));
         level = PlayerPrefs.GetInt("level");
         print("Map : " + level);
     }
@@ -60,6 +69,10 @@ public class InGameManager : MonoBehaviour {
         Vector2 clampx = InstantiateTilemap(); 
         
         CameraController.instance.SetCameraClamp(new Vector2(clampx.x - 9, 15), Vector2.zero);
+    }
+
+    private void RemoveRescuable() {
+        
     }
 
     private void SelectFromTilemaps(ref List<GameObject> from, int min = 1, int max = 2) {

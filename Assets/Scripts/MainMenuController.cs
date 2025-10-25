@@ -1,9 +1,6 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour {
@@ -25,6 +22,13 @@ public class MainMenuController : MonoBehaviour {
     public List<Button> btgrp_newGame;
     public List<Button> btgrp_loadGame;
     public List<Button> btgrp_setting;
+
+    [Header("Character Select")]
+    private string curr_Select;
+    public Button btn_M4SOPMODII;
+    public Button btn_Vector;
+    public Button btn_SAT8;
+    public Button btn_Kar98k;
     
     private List<Button> buttonGroup;
     private e_type type = e_type.main;
@@ -67,14 +71,43 @@ public class MainMenuController : MonoBehaviour {
         }
     }
 
+    public void click_SelectCharacter(string name) {
+        curr_Select = name;
+    }
+
+    public void click_StartGame() {
+        PlayerPrefs.SetString("main", curr_Select);
+        SceneManager.LoadScene("InGame");
+    }
+
     private void click_NewGame() {
         pnl_newGame.SetActive(true);
         pnl_background.SetActive(true);
         pnl_background.GetComponent<UIBackground>().Active(pnl_newGame);
         Change_UI(e_type.newgame);
+
+        if (!PlayerPrefs.HasKey("M4SOPMODII")) {
+            initPlayerPrefs();
+        }
+
+        btn_M4SOPMODII.interactable = PlayerPrefs.GetInt("M4SOPMODII") == 1;
+        btn_Vector.interactable = PlayerPrefs.GetInt("Vector") == 1;
+        btn_SAT8.interactable = PlayerPrefs.GetInt("SAT8") == 1;
+        btn_Kar98k.interactable = PlayerPrefs.GetInt("Kar98k") == 1;
+    }
+
+    private void initPlayerPrefs() {
+        //보유 캐릭터 초기화
+        PlayerPrefs.SetInt("M4SOPMODII", 1);
+        PlayerPrefs.SetInt("Vector", 0);
+        PlayerPrefs.SetInt("SAT8", 0);
+        PlayerPrefs.SetInt("Kar98k", 0);
+        //진행도 초기화
+        PlayerPrefs.SetString("main",null); //게임 진입 시 선택한 캐릭터
+        PlayerPrefs.SetString("rescue",null); //게임에서 구출한 캐릭터
+        PlayerPrefs.SetInt("level", 0);
+        //업적 초기화
         
-        //temp
-        SceneManager.LoadScene("InGame");
     }
 
     private void click_LoadGame() {
