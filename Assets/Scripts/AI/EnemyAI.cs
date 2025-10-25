@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
 
         SetState();
 
-        player = PlayerController.instance.player.gameObject;
+        player = PlayerController.instance.curDoll.gameObject;
         
         StateChanged();
     }

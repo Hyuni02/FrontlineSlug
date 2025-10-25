@@ -18,8 +18,8 @@ public class CameraController : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    private void Start() {
-        player = PlayerController.instance.player;
+    public void SetPlayer(Friendly _player) {
+        player = _player;
     }
 
     public void SetCameraClamp(Vector2 cmax, Vector2 cmin) {

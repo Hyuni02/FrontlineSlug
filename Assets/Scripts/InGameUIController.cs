@@ -7,6 +7,8 @@ public class InGameUIController : MonoBehaviour {
     [Header("Player UI")]
     public Image img_portrait;
     public Slider sld_HP;
+    public Image img_portrait_res;
+    public Slider sld_HP_res;
     [Header("Boss UI")]
     private Boss boss;
     public Image img_bossPortrait;
@@ -21,15 +23,27 @@ public class InGameUIController : MonoBehaviour {
     }
 
     private void Start() {
-        SetSlider(PlayerController.instance.player);
         img_bossPortrait.gameObject.SetActive(false);
         sld_bossHP.gameObject.SetActive(false);
+        
+        img_portrait_res.gameObject.SetActive(false);
+        sld_HP_res.gameObject.SetActive(false);
+        
+        SetSlider(PlayerController.instance.player, PlayerController.instance.player_rescue);
     }
 
-    void SetSlider(Friendly player) {
+    public void SetSlider(Friendly player, Friendly rescue) {
         img_portrait.sprite = player.img_face;
         sld_HP.maxValue = player.maxHP;
         sld_HP.value = player.currHP;
+
+        if (InGameManager.instance.level >= 2) {
+            img_portrait_res.gameObject.SetActive(true);
+            img_portrait_res.sprite = rescue.img_face;
+            sld_HP_res.gameObject.SetActive(true);
+            sld_HP_res.maxValue = rescue.maxHP;
+            sld_HP_res.value = rescue.currHP;
+        }
     }
 
     public void SetBossUI(Boss _boss, GameObject block) {

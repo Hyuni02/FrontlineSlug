@@ -13,8 +13,9 @@ public class StringSpine {
 public class InGameManager : MonoBehaviour {
     public static InGameManager instance;
 
-    [Header("Player")]
-    public List<GameObject> lst_player;
+    public Transform spawnPos;
+    // [Header("Player")]
+    // public List<GameObject> lst_player;
     [Header("Tilemps")]
     public Transform trans_grid;
     private List<GameObject> lst_map = new List<GameObject>();
@@ -31,7 +32,8 @@ public class InGameManager : MonoBehaviour {
 
     public Transform trans_Canvas;
 
-    private int level = 0;
+    [HideInInspector]
+    public int level = 0;
 
     private void Awake() {
         if (instance != null) {
@@ -40,12 +42,26 @@ public class InGameManager : MonoBehaviour {
         }
         instance = this;
 
-        print(PlayerPrefs.GetString("main"));
         level = PlayerPrefs.GetInt("level");
-        print("Map : " + level);
     }
 
+    public GameObject GetDollWithName(string name) {
+        return lst_rescuable.Find(x => (x.name == name)).doll;
+    }
+    
     void Start() {
+        //메인 인형
+        var main = GetDollWithName(PlayerPrefs.GetString("main"));
+        GameObject mainDoll = Instantiate(main, spawnPos.position, Quaternion.identity);
+        PlayerController.instance.SetPlayer(mainDoll);
+        //구출 인형
+        if (level >= 2) {
+            var rescue = GetDollWithName(PlayerPrefs.GetString("rescue"));
+            GameObject rescueDoll = Instantiate(rescue, spawnPos.position, Quaternion.identity);
+            PlayerController.instance.SetPlayer(mainDoll, rescueDoll);
+            rescueDoll.SetActive(false);
+        }
+
         //Start Point
         SelectFromTilemaps(ref pref_lst_start);
         if (level != 0) {
