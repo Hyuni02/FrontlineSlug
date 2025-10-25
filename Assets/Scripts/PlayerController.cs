@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         hori = Input.GetAxisRaw("Horizontal");
 
         //교체
-        if (Input.GetKeyDown(KeyCode.C)) {
+        if (Input.GetKeyDown(KeyCode.C) && InGameManager.instance.level >= 2) {
             ChangeDoll();
         }
         //공격
@@ -50,13 +50,6 @@ public class PlayerController : MonoBehaviour
                 curDoll.Jump();
             }
         }
-        
-        //temp
-        // if (Input.GetKeyDown(KeyCode.Space)) {
-        //     foreach (var enemy in FindObjectsOfType<EnemyAI>()) {
-        //         enemy.Activate();
-        //     }
-        // }
     }
 
     public void ChangeDoll() {

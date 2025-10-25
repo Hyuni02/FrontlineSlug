@@ -86,18 +86,15 @@ public class InGameManager : MonoBehaviour {
         
         CameraController.instance.SetCameraClamp(new Vector2(clampx.x - 9, 15), Vector2.zero);
     }
-
-    private void RemoveRescuable() {
-        
-    }
-
+    
     private void SelectFromTilemaps(ref List<GameObject> from, int min = 1, int max = 2) {
         List<GameObject> lst_filtered
             = new List<GameObject>(from.Where(x => (x.GetComponent<TilemapData>().level == level)));
         int count = Random.Range(min, max);
         while (count > 0) {
-            GameObject battle2 = Utility.Pop(ref lst_filtered);
-            lst_map.Add(battle2);
+            GameObject battle = Utility.SelectRandom(lst_filtered);
+            lst_filtered.Remove(battle);
+            lst_map.Add(battle);
             count--;
         }
     }
