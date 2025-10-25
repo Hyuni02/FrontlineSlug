@@ -1,11 +1,7 @@
 using Spine;
 using Spine.Unity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
-using Event = UnityEngine.Event;
 
 public abstract class Doll : MonoBehaviour {
     public enum CharacterState {

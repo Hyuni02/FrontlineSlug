@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour {
     private BoxCollider2D checkBox;
+    [HideInInspector]
     public bool isGrounded = false;
 
     private void Start() {
