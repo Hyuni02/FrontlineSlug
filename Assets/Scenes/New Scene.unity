@@ -466,6 +466,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curr_state: 1
+  evt_fire: fire
+  pref_bullet: {fileID: 5910412370262980767, guid: 48e76f7530e6ecd48967e66565715a08, type: 3}
+  currHP: 100
+  dmg: 10
 --- !u!1 &1462360378
 GameObject:
   m_ObjectHideFlags: 0

@@ -41,7 +41,23 @@ public class Doll_V2 : MonoBehaviour
     protected float intervalCounter = 0;
     protected float attakDuration = 0.5f;
     protected float durationCounter = 0;
+    
+    // [Header("Events")]
+    // [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
+    // public string evt_fire;
+    // EventData eventData_fire;
+    
+    public GameObject pref_bullet;
+    protected int maxHP = 100;
+    [SerializeField]
+    public int currHP = 100;
+    [SerializeField]
+    protected int dmg = 10;
 
+    public void fire() { 
+        print("fire");
+    }
+    
     protected virtual void Start() {
         //set component
         rigid = GetComponent<Rigidbody2D>();
@@ -52,6 +68,10 @@ public class Doll_V2 : MonoBehaviour
         //set variable
         vec_jump = new Vector2(0, jumpPower);
         trans_muzzle = transform.Find("muzzle");
+        
+        //set event
+        // eventData_fire = mecanim.Skeleton.Data.FindEvent(evt_fire);
+        
     }
     
     protected virtual void Update() {
@@ -62,6 +82,7 @@ public class Doll_V2 : MonoBehaviour
         animator.SetFloat(para_attackCounter, durationCounter);
 
         if (prev_state != curr_state) {
+            HandleStateChanged();
             prev_state = curr_state;
         }
     }
@@ -103,7 +124,52 @@ public class Doll_V2 : MonoBehaviour
         animator.SetTrigger(para_attack);
         curr_state = CharacterState.attack;
     }
+
+    public virtual void Shoot() {
+        GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
+        Vector2 dir = mecanim.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
+    }
+
+    public virtual void Hit(BulletData bulletData) {
+        currHP -= bulletData.dmg;
+        if (currHP <= 0) {
+            curr_state = CharacterState.die;
+            Die();
+        }
+    }
+
+    protected virtual void Die(int delay = 2) {
+        vec_move = new Vector2(0, rigid.velocity.y);
+        rigid.velocity = vec_move;
+        Destroy(gameObject, delay);
+    }
     
+    protected void HandleAnimationStateEvent(TrackEntry trackEntry, Spine.Event e) {
+        // bool fire = (eventData_fire == e.Data); // Performance recommendation: Match cached reference instead of string.
+        // if (fire) {
+        //     Shoot();
+        // }
+    }
+    void HandleStateChanged() {
+        string stateName = null;
+        switch (curr_state) {
+            case CharacterState.wait:
+                stateName = "wait";
+                break;
+            case CharacterState.move:
+                stateName = "move";
+                break;
+            case CharacterState.attack:
+                stateName = "attack";
+                break;
+            case CharacterState.die:
+                stateName = "die";
+                break;
+            default:
+                break;
+        }
+    }
     private void FlipModel(bool flip) {
         mecanim.skeleton.ScaleX = flip ? -1 : 1;
     }
