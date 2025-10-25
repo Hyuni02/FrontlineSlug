@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 783001316578985350}
   - component: {fileID: 7757919213595437306}
   - component: {fileID: 1048762020933546338}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: EnemyTrigger (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3510,7 +3510,7 @@ GameObject:
   - component: {fileID: 9082393173635486464}
   - component: {fileID: 9115317334151908133}
   - component: {fileID: 4506462756780871530}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: EnemyTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

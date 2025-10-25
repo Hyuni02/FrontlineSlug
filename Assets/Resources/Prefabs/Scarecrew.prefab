@@ -54,8 +54,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curr_state: 1
-  pref_bullet: {fileID: 5910412370262980767, guid: 48e76f7530e6ecd48967e66565715a08, type: 3}
+  pref_bullet: {fileID: 5910412370262980767, guid: d4ea0397065ca794da12a2218b2ea3b3, type: 3}
+  maxHP: 100
   currHP: 100
+  img_face: {fileID: 0}
 --- !u!114 &4626819031444322037
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b9e8ddb8e7639a4a9785f7b53d7f7da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   range: 30
   curr_state: 1
   enemy: {fileID: 0}

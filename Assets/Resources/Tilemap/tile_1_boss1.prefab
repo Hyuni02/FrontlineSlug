@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 9200347078621380086}
   - component: {fileID: 9193634362870817677}
   - component: {fileID: 7844862899130346109}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: EnemyTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
