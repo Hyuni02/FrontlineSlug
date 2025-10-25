@@ -3,7 +3,7 @@ using Spine.Unity;
 
 public class Doll : MonoBehaviour {
     public enum CharacterState {
-        none, wait, move, attack, die
+        none, wait, move, attack, die, skill
     }
 
     //Components
@@ -40,7 +40,8 @@ public class Doll : MonoBehaviour {
     protected int deathDelay = 2;
 
     public GameObject pref_bullet;
-    protected int maxHP = 100;
+    [HideInInspector]
+    public int maxHP = 100;
     [SerializeField]
     public int currHP = 100;
     protected int dmg = 10;
@@ -65,7 +66,6 @@ public class Doll : MonoBehaviour {
         animator.SetFloat(para_attackCounter, durationCounter);
 
         if (prev_state != curr_state) {
-            HandleStateChanged();
             prev_state = curr_state;
         }
     }
@@ -137,25 +137,6 @@ public class Doll : MonoBehaviour {
         }
     }
 
-    void HandleStateChanged() {
-        string stateName = null;
-        switch (curr_state) {
-            case CharacterState.wait:
-                stateName = "wait";
-                break;
-            case CharacterState.move:
-                stateName = "move";
-                break;
-            case CharacterState.attack:
-                stateName = "attack";
-                break;
-            case CharacterState.die:
-                stateName = "die";
-                break;
-            default:
-                break;
-        }
-    }
     protected void FlipModel(bool flip) {
         mecanim.skeleton.ScaleX = flip ? -1 : 1;
     }

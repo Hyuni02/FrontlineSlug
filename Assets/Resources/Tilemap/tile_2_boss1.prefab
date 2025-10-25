@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 9109574559639096210}
   - component: {fileID: 7601586966813761784}
   m_Layer: 10
-  m_Name: tile_1_boss1
+  m_Name: tile_2_boss1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1675,7 +1675,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec595e1cb0793742b185ca13e751250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 2
   startPos: {fileID: 8811101592970333939}
   endPos: {fileID: 7782066100777416721}
 --- !u!1001 &2778287765502859728

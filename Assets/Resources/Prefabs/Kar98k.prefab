@@ -174,7 +174,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   curr_state: 1
   pref_bullet: {fileID: 5910412370262980767, guid: 48e76f7530e6ecd48967e66565715a08, type: 3}
+  maxHP: 100
   currHP: 100
+  img_face: {fileID: 21300000, guid: f75cb4a866281a14bb5b4a508cf2290c, type: 3}
 --- !u!114 &6063359467173893287
 MonoBehaviour:
   m_ObjectHideFlags: 0

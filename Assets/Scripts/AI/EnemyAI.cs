@@ -7,6 +7,7 @@ public class EnemyAI : MonoBehaviour
         Wait,
         Move,
         Attack,
+        Skill,
         Die
     }
     
@@ -26,11 +27,12 @@ public class EnemyAI : MonoBehaviour
     public AIState aiState_Wait;
     public AIState aiState_Move;
     public AIState aiState_Attack;
+    public AIState aiState_Skill;
     public AIState aiState_Die;
 
     public bool activate = false;
     
-    private void Start() {
+    protected virtual void Start() {
         enemy = GetComponent<Enemy>();
 
         SetState();
@@ -48,6 +50,7 @@ public class EnemyAI : MonoBehaviour
     }
     
     private void Update() {
+        if (!activate) return;
         StateChanged();
 
         curr_aiState.Update();
@@ -78,6 +81,9 @@ public class EnemyAI : MonoBehaviour
         }
         else if (curr_state == EnemyState.Die) {
             curr_aiState = aiState_Die;
+        }
+        else if (curr_state == EnemyState.Skill) {
+            curr_aiState = aiState_Skill;
         }
         else if (curr_state == EnemyState.None) {
             return;

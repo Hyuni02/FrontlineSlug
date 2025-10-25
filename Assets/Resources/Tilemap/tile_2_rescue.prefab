@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: 9109574559639096210}
   - component: {fileID: -720020484156913704}
   m_Layer: 10
-  m_Name: tile_1_rescue
+  m_Name: tile_2_rescue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -820,6 +820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec595e1cb0793742b185ca13e751250, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
+  level: 2
   startPos: {fileID: 4156993829858041861}
   endPos: {fileID: 7523302683090801761}

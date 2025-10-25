@@ -1,5 +1,4 @@
 using UnityEngine;
-
-public class Friendly : Doll
-{
+public class Friendly : Doll {
+    public Sprite img_face;
 }
