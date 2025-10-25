@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class AIState_Attack : AIState {
     public AIState_Attack(EnemyAI enemyAI) : base(enemyAI) {
     }

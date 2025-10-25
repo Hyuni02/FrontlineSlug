@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class AIState_Wait : AIState
 {
     public AIState_Wait(EnemyAI enemyAI) : base(enemyAI) { }

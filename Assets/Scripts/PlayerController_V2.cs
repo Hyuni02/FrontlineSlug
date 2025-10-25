@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController_V2 : MonoBehaviour
@@ -31,6 +29,13 @@ public class PlayerController_V2 : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.X)) {
                 player.Jump();
+            }
+        }
+        
+        //temp
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            foreach (var enemy in FindObjectsOfType<EnemyAI_V2>()) {
+                enemy.Activate();
             }
         }
     }

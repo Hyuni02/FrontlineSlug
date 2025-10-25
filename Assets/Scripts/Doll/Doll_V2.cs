@@ -1,8 +1,5 @@
 using UnityEngine;
-using Spine;
 using Spine.Unity;
-using System.Collections.Generic;
-using System.Reflection;
 
 public class Doll_V2 : MonoBehaviour
 {
@@ -42,11 +39,6 @@ public class Doll_V2 : MonoBehaviour
     protected float attakDuration = 0.5f;
     protected float durationCounter = 0;
     
-    // [Header("Events")]
-    // [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
-    // public string evt_fire;
-    // EventData eventData_fire;
-    
     public GameObject pref_bullet;
     protected int maxHP = 100;
     [SerializeField]
@@ -54,11 +46,7 @@ public class Doll_V2 : MonoBehaviour
     [SerializeField]
     protected int dmg = 10;
 
-    public void fire() { 
-        print("fire");
-    }
-    
-    protected virtual void Start() {
+    protected virtual void Awake() {
         //set component
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponentInChildren<Animator>();
@@ -68,10 +56,6 @@ public class Doll_V2 : MonoBehaviour
         //set variable
         vec_jump = new Vector2(0, jumpPower);
         trans_muzzle = transform.Find("muzzle");
-        
-        //set event
-        // eventData_fire = mecanim.Skeleton.Data.FindEvent(evt_fire);
-        
     }
     
     protected virtual void Update() {
@@ -144,13 +128,15 @@ public class Doll_V2 : MonoBehaviour
         rigid.velocity = vec_move;
         Destroy(gameObject, delay);
     }
-    
-    protected void HandleAnimationStateEvent(TrackEntry trackEntry, Spine.Event e) {
-        // bool fire = (eventData_fire == e.Data); // Performance recommendation: Match cached reference instead of string.
-        // if (fire) {
-        //     Shoot();
-        // }
+
+    public void GetEvent(string eventName) {
+        switch (eventName) {
+            case "fire":
+                Shoot();
+                break;
+        }
     }
+    
     void HandleStateChanged() {
         string stateName = null;
         switch (curr_state) {
@@ -170,7 +156,7 @@ public class Doll_V2 : MonoBehaviour
                 break;
         }
     }
-    private void FlipModel(bool flip) {
+    protected void FlipModel(bool flip) {
         mecanim.skeleton.ScaleX = flip ? -1 : 1;
     }
     
