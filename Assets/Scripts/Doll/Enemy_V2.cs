@@ -1,3 +1,4 @@
+using UnityEngine;
 public class Enemy_V2 : Doll_V2 {
     protected EnemyAI_V2 enemyAI;
 
@@ -16,5 +17,11 @@ public class Enemy_V2 : Doll_V2 {
                 Attack();
             }
         }
+    }
+    
+    protected override void Die() {
+        enemyAI.ChangeState(EnemyAI_V2.EnemyState.Die);
+        base.Die();
+        Destroy(gameObject, deathDelay);
     }
 }

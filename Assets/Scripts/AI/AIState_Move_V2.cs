@@ -7,6 +7,8 @@ public class AIState_Move_V2 : AIState_V2 {
         SetDestination();
     }
     public override void Update() {
+        if (!pos) return;
+        
         //이동
         enemyAI.enemy.Move(dir);
         
@@ -23,8 +25,8 @@ public class AIState_Move_V2 : AIState_V2 {
     public override void Exit() { }
 
     private void SetDestination() {
-        pos = enemyAI.GetComponent<MovePoint>().GetPos(pos);
-        Debug.Log(pos.position);
+        pos = enemyAI.GetComponent<MovePoint>().GetPos();
+
         dir = pos.position.x - enemyAI.transform.position.x;
         dir = dir > 0 ? 1 : -1;
     }

@@ -208,7 +208,6 @@ MonoBehaviour:
   curr_state: 1
   pref_bullet: {fileID: 5910412370262980767, guid: 48e76f7530e6ecd48967e66565715a08, type: 3}
   currHP: 100
-  dmg: 10
 --- !u!114 &2601083540919537036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +222,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   range: 9
-  patrol: 0
   curr_state: 1
   enemy: {fileID: 0}
   activate: 0
@@ -285,7 +283,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 6
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 2
   m_SleepingMode: 1

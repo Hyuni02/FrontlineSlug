@@ -14,7 +14,6 @@ public class EnemyAI_V2 : MonoBehaviour
     [HideInInspector]
     public GameObject player;
     public int range;
-    public bool patrol;
 
     //State
     private EnemyState prev_state = EnemyState.None;
@@ -23,8 +22,8 @@ public class EnemyAI_V2 : MonoBehaviour
     [HideInInspector]
     public Enemy_V2 enemy;
 
-    public AIState_V2 aiState_Wait;
     public AIState_V2 curr_aiState;
+    public AIState_V2 aiState_Wait;
     public AIState_V2 aiState_Move;
     public AIState_V2 aiState_Attack;
     public AIState_V2 aiState_Die;
@@ -33,15 +32,19 @@ public class EnemyAI_V2 : MonoBehaviour
     
     private void Start() {
         enemy = GetComponent<Enemy_V2>();
-        
-        aiState_Wait = new AIState_Wait_V2(this);
-        aiState_Attack = new AIState_Attack_V2(this);
-        aiState_Move = new AIState_Move_V2(this);
-        aiState_Die = new AIState_Die_V2(this);
+
+        SetState();
 
         player = PlayerController_V2.instance.player.gameObject;
         
         StateChanged();
+    }
+
+    protected virtual void SetState() {
+        aiState_Wait = new AIState_Wait_V2(this);
+        aiState_Attack = new AIState_Attack_V2(this);
+        aiState_Move = new AIState_Move_V2(this);
+        aiState_Die = new AIState_Die_V2(this);
     }
     
     private void Update() {

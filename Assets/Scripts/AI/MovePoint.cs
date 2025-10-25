@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class MovePoint : MonoBehaviour {
     public List<Transform> lst_pos;
-    
+    private int index = -1;
     //현재가 아닌 무작위 하나 획득
-    public Transform GetPos(Transform pos) {
-        while (true) {
-            var dest = lst_pos[Random.Range(0, lst_pos.Count)];
-            if (dest != pos) {
-                return dest;
-            }
-        }
+    public Transform GetPos() {
+        index++;
+        index %= lst_pos.Count;
+        return lst_pos[index];
     }
 }

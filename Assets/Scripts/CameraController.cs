@@ -3,7 +3,7 @@ using UnityEngine;
 public class CameraController : MonoBehaviour {
     public static CameraController instance;
     
-    private Friendly player;
+    private Friendly_V2 player;
     private float speed = 0.02f;
     public Vector3 offset;
 
@@ -19,7 +19,7 @@ public class CameraController : MonoBehaviour {
     }
 
     private void Start() {
-        player = PlayerContoller.instance.player;
+        player = PlayerController_V2.instance.player;
     }
 
     public void SetCameraClamp(Vector2 cmax, Vector2 cmin) {
