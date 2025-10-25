@@ -6,7 +6,7 @@ public class EnemyTrigger : MonoBehaviour {
 
     public void OnTriggerEnter2D(Collider2D other) {
         foreach (var enemy in lst_enemy) {
-            enemy.activate = true;
+            enemy.Activate();
         }
     }
 }

@@ -61,6 +61,10 @@ public class EnemyAI : MonoBehaviour
         curr_aiState.Update();
     }
 
+    public virtual void Activate() {
+        activate = true;
+    }
+
     //적 상태 : 추적, 공격
     protected virtual void SelectState() {
         if (enemy.currHP <= 0) {
