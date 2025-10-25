@@ -1,4 +1,4 @@
-public class Jager_V2 : Enemy_V2 {
+public class Jager : Enemy {
     protected override void Awake() {
         base.Awake();
 

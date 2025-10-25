@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class PlayerController_V2 : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    public static PlayerController_V2 instance;
+    public static PlayerController instance;
 
-    public Friendly_V2 player;
+    public Friendly player;
 
     [HideInInspector]
     public float hori;
@@ -34,7 +34,7 @@ public class PlayerController_V2 : MonoBehaviour
         
         //temp
         if (Input.GetKeyDown(KeyCode.Space)) {
-            foreach (var enemy in FindObjectsOfType<EnemyAI_V2>()) {
+            foreach (var enemy in FindObjectsOfType<EnemyAI>()) {
                 enemy.Activate();
             }
         }

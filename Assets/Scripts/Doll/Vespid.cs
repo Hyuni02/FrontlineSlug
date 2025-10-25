@@ -1,15 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class Vespid : Enemy
 {
-    protected override void Start()
-    {
-        base.Start();
+    protected override void Awake() {
+        base.Awake();
 
-        speed = 3;
-        dmg = 8;
-        attackInterval = 4;
+        speed = 2;
+        dmg = 5;
+        attackInterval = 5;
     }
 }

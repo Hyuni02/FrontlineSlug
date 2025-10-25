@@ -1,10 +1,10 @@
 using UnityEngine;
 
 public class EventListener : MonoBehaviour {
-    private Doll_V2 doll;
+    private Doll doll;
 
     private void Start() {
-        doll = GetComponentInParent<Doll_V2>();
+        doll = GetComponentInParent<Doll>();
     }
 
     void fire() {

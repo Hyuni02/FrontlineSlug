@@ -1,8 +1,8 @@
 using UnityEngine;
-public class AIState_Move_V2 : AIState_V2 {
+public class AIState_Move : AIState {
     private Transform pos;
     private float dir;
-    public AIState_Move_V2(EnemyAI_V2 enemyAI) : base(enemyAI) { }
+    public AIState_Move(EnemyAI enemyAI) : base(enemyAI) { }
     public override void Enter() {
         SetDestination();
     }
@@ -19,7 +19,7 @@ public class AIState_Move_V2 : AIState_V2 {
         
         //공격 대상 확인
         if (Vector2.Distance(enemyAI.player.transform.position, enemyAI.transform.position) < enemyAI.range) {
-            enemyAI.ChangeState(EnemyAI_V2.EnemyState.Attack);
+            enemyAI.ChangeState(EnemyAI.EnemyState.Attack);
         }
     }
     public override void Exit() { }

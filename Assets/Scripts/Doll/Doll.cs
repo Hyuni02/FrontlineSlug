@@ -1,80 +1,68 @@
-using Spine;
-using Spine.Unity;
-using System.Collections.Generic;
 using UnityEngine;
+using Spine.Unity;
 
-public abstract class Doll : MonoBehaviour {
+public class Doll : MonoBehaviour {
     public enum CharacterState {
         none, wait, move, attack, die
     }
 
-    protected Vector2 vec_move;
-    protected Vector2 vec_jump;
-
+    //Components
     protected Rigidbody2D rigid;
-    protected SkeletonAnimation skel;
     protected Animator animator;
+    protected SkeletonMecanim mecanim;
 
-    protected string param_hori = "hori";
-    protected string param_die = "die";
-    protected string param_attack = "attack";
-    protected string param_attackCounter = "attackCounter";
-    protected string param_attackPressed = "attackPressed";
+    //Animator Paramter
+    protected string para_move = "move";
+    protected string para_attack = "attack";
+    protected string para_die = "die";
+    protected string para_attackPressed = "attackPressed";
+    protected string para_attackCounter = "attackCounter";
+    protected string para_victory = "victory";
 
-    public GameObject pref_bullet;
+    //Children
     protected Transform trans_muzzle;
     protected GroundChecker groundChecker;
 
+    //State
     protected CharacterState prev_state = CharacterState.none;
     [SerializeField]
     protected CharacterState curr_state = CharacterState.wait;
 
-    public Spine.Animation TargetAnimation { get; private set; }
-    public List<StateAnimationPair> lst_stateAnimation = new List<StateAnimationPair>();
-
-    [Header("Events")]
-    [SpineEvent(dataField: "skeletonAnimation", fallbackToTextField: true)]
-    public string evt_fire;
-    Spine.EventData eventData_fire;
-
-    protected int maxHP = 100;
-    [SerializeField]
-    public int currHP = 100;
-    [SerializeField]
-    protected int dmg = 10;
+    //variable
+    protected Vector2 vec_move;
+    protected Vector2 vec_jump;
     protected float speed = 7;
     protected int jumpPower = 800;
     protected float attackInterval = .5f;
     protected float intervalCounter = 0;
     protected float attakDuration = 0.5f;
     protected float durationCounter = 0;
+    protected int deathDelay = 2;
 
-    protected virtual void Start() {
-        //set Component
+    public GameObject pref_bullet;
+    protected int maxHP = 100;
+    [SerializeField]
+    public int currHP = 100;
+    protected int dmg = 10;
+
+    protected virtual void Awake() {
+        //set component
         rigid = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        skel = GetComponentInChildren<SkeletonAnimation>();
+        animator = GetComponentInChildren<Animator>();
+        mecanim = GetComponentInChildren<SkeletonMecanim>();
         groundChecker = GetComponentInChildren<GroundChecker>();
 
-        //init animation
-        foreach (var entry in lst_stateAnimation) {
-            entry.animation.Initialize();
-        }
-
-        //init variable
+        //set variable
         vec_jump = new Vector2(0, jumpPower);
-        trans_muzzle = GetComponentInChildren<BoneFollower>().transform;
-
-        eventData_fire = skel.Skeleton.Data.FindEvent(evt_fire);
-        skel.AnimationState.Event += HandleAnimationStateEvent;
+        trans_muzzle = transform.Find("muzzle");
     }
 
     protected virtual void Update() {
         if (prev_state == CharacterState.die) return;
-        
+
         intervalCounter -= Time.deltaTime;
         durationCounter -= Time.deltaTime;
-        animator.SetFloat(param_attackCounter, durationCounter);
+        animator.SetFloat(para_attackCounter, durationCounter);
 
         if (prev_state != curr_state) {
             HandleStateChanged();
@@ -82,16 +70,18 @@ public abstract class Doll : MonoBehaviour {
         }
     }
 
-    #region Movement
     public virtual void Move(float hori) {
         if (curr_state == CharacterState.die) return;
         if (durationCounter > 0) return;
 
         vec_move = new Vector2(hori * speed, rigid.velocity.y);
         rigid.velocity = vec_move;
-        if (hori != 0) FlipModel(hori < 0);
-        animator.SetFloat(param_hori, Mathf.Abs(hori));
-        curr_state = hori != 0 ? CharacterState.move : CharacterState.wait;
+
+        bool moving = hori != 0;
+
+        if (moving) FlipModel(hori < 0);
+        animator.SetBool(para_move, moving);
+        curr_state = moving ? CharacterState.move : CharacterState.wait;
     }
 
     public virtual void Jump() {
@@ -102,58 +92,48 @@ public abstract class Doll : MonoBehaviour {
         rigid.AddForce(vec_jump);
     }
 
-    public bool TouchWall() {
-        var dir = skel.skeleton.ScaleX == 1 ? Vector2.right : Vector2.left;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, 1, LayerMask.GetMask("Tilemap"));
-        return hit.collider != null;
-    }
-    #endregion
-
-    #region Attack
     public virtual void TryAttack(bool isPressed) {
-        animator.SetBool(param_attackPressed, isPressed);
+        animator.SetBool(para_attackPressed, isPressed);
 
         if (intervalCounter < 0 && isPressed) {
             Attack();
         }
     }
 
-    public virtual void Attack() {
-        //점프 중 공격 불가 
+    protected virtual void Attack() {
         Move(0);
         intervalCounter = attackInterval;
         durationCounter = attakDuration;
-        animator.SetTrigger(param_attack);
+        animator.SetTrigger(para_attack);
         curr_state = CharacterState.attack;
-        PlayAnimationForState("attack", 0); //상태가 바뀌지 않지만 애니메이션은 출력해야 함
     }
 
     public virtual void Shoot() {
         GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
-        Vector2 dir = skel.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
+        Vector2 dir = mecanim.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
         obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
     }
 
     public virtual void Hit(BulletData bulletData) {
         currHP -= bulletData.dmg;
         if (currHP <= 0) {
-            curr_state = CharacterState.die;
             Die();
         }
     }
 
-    public virtual void Die(int delay = 2) {
+    protected virtual void Die() {
+        curr_state = CharacterState.die;
         vec_move = new Vector2(0, rigid.velocity.y);
         rigid.velocity = vec_move;
-        Destroy(gameObject, delay);
+        animator.SetTrigger(para_die);
+        gameObject.layer = LayerMask.NameToLayer("DeadBody");
     }
-    #endregion
 
-    #region Animation & Model
-    private void HandleAnimationStateEvent(TrackEntry trackEntry, Spine.Event e) {
-        bool fire = (eventData_fire == e.Data); // Performance recommendation: Match cached reference instead of string.
-        if (fire) {
-            Shoot();
+    public void GetEvent(string eventName) {
+        switch (eventName) {
+            case "fire":
+                Shoot();
+                break;
         }
     }
 
@@ -175,54 +155,12 @@ public abstract class Doll : MonoBehaviour {
             default:
                 break;
         }
-
-        PlayAnimationForState(stateName, 0);
+    }
+    protected void FlipModel(bool flip) {
+        mecanim.skeleton.ScaleX = flip ? -1 : 1;
     }
 
-    private void PlayAnimationForState(string stateShortName, int layerIndex) {
-        PlayAnimationForState(StringToHash(stateShortName), layerIndex,
-            !(stateShortName.Contains("die") || stateShortName.Contains("attack")));
-    }
-
-    private void PlayAnimationForState(int shortNameHash, int layerIndex, bool loop = true) {
-        var foundAnimation = GetAnimationForState(shortNameHash);
-        if (foundAnimation == null)
-            return;
-
-        PlayNewAnimation(foundAnimation, layerIndex, loop);
-    }
-
-    private Spine.Animation GetAnimationForState(int shortNameHash) {
-        var foundState = lst_stateAnimation.Find(entry => StringToHash(entry.stateName) == shortNameHash);
-        return (foundState == null) ? null : foundState.animation;
-    }
-
-    private void PlayNewAnimation(Spine.Animation target, int layerIndex, bool loop = true) {
-        Spine.Animation transition = null;
-        Spine.Animation current = null;
-
-        current = GetCurrentAnimation(layerIndex);
-
-        skel.AnimationState.SetAnimation(layerIndex, target, loop);
-
-        this.TargetAnimation = target;
-    }
-
-    private Spine.Animation GetCurrentAnimation(int layerIndex) {
-        var currentTrackEntry = skel.AnimationState.GetCurrent(layerIndex);
-        return (currentTrackEntry != null) ? currentTrackEntry.Animation : null;
-    }
-
-    private int StringToHash(string s) {
-        return Animator.StringToHash(s);
-    }
-
-    public void FlipModel(bool flip) {
-        skel.skeleton.ScaleX = flip ? -1 : 1;
-    }
-
-    protected bool IsGrounded() {
+    private bool IsGrounded() {
         return groundChecker.isGrounded;
     }
-    #endregion
 }

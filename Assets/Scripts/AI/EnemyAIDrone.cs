@@ -1,4 +1,4 @@
-public class EnemyAI_Drone_V2 : EnemyAI_V2
+public class EnemyAIDrone : EnemyAI
 {
     public override void Activate() {
         activate = true;

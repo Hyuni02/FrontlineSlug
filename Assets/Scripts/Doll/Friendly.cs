@@ -1,4 +1,5 @@
-public abstract class Friendly : Doll
+using UnityEngine;
+
+public class Friendly : Doll
 {
-    
 }
