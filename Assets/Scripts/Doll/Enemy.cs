@@ -1,3 +1,4 @@
+using UnityEngine;
 public class Enemy : Doll {
     protected EnemyAI enemyAI;
 
@@ -8,10 +9,11 @@ public class Enemy : Doll {
     }
     
     public override void TryAttack(bool isPressed) {
+        GameObject player = PlayerController.instance.curDoll.gameObject;
         animator.SetBool(para_attackPressed, isPressed);
 
         if (isPressed) {
-            FlipModel((enemyAI.player.transform.position - transform.position).x < 0);
+            FlipModel((player.transform.position - transform.position).x < 0);
             if (intervalCounter < 0) {
                 Attack();
             }

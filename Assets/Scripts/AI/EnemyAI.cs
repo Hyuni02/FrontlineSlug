@@ -11,9 +11,6 @@ public class EnemyAI : MonoBehaviour
         Die
     }
     
-    //플레이어 찾기
-    [HideInInspector]
-    public GameObject player;
     public int range;
 
     //State
@@ -36,8 +33,6 @@ public class EnemyAI : MonoBehaviour
         enemy = GetComponent<Enemy>();
 
         SetState();
-
-        player = PlayerController.instance.curDoll.gameObject;
         
         StateChanged();
     }

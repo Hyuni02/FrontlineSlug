@@ -78,6 +78,7 @@ public class MainMenuController : MonoBehaviour {
     public void click_StartGame() {
         PlayerPrefs.SetString("main", curr_Select);
         PlayerPrefs.SetString("rescue", null);
+        PlayerPrefs.SetInt("level", 0);
         SceneManager.LoadScene("InGame");
     }
 

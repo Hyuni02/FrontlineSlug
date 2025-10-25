@@ -5,7 +5,8 @@ public class Boss : Enemy {
     private int attackCounter = 2;
     public override void TryAttack(bool isPressed) {
         if (isPressed) {
-            FlipModel((enemyAI.player.transform.position - transform.position).x < 0);
+            GameObject player = PlayerController.instance.curDoll.gameObject;
+            FlipModel((player.transform.position - transform.position).x < 0);
             while (attackCounter > 0) {
                 Attack();
                 attackCounter--;
