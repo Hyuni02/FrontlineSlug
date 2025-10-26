@@ -1,8 +1,8 @@
-using System;
 using UnityEngine;
 public class Boss : Enemy {
     public Sprite img_face;
     private int attackCounter = 2;
+    public BossTrigger trigger;
     public override void TryAttack(bool isPressed) {
         if (isPressed) {
             GameObject player = PlayerController.instance.curDoll.gameObject;
@@ -19,6 +19,8 @@ public class Boss : Enemy {
 
     protected override void Die() {
         enemyAI.ChangeState(EnemyAI.EnemyState.Die);
+        deathDelay = 5;
         base.Die();
+        trigger.SetBlock(true);
     }
 }

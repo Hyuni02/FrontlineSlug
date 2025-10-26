@@ -61,7 +61,7 @@ public class InGameUIController : MonoBehaviour {
         }
     }
 
-    public void SetBossUI(Boss _boss, GameObject block) {
+    public void SetBossUI(Boss _boss) {
         boss = _boss;
         img_bossPortrait.gameObject.SetActive(true);
         sld_bossHP.gameObject.SetActive(true);
@@ -69,8 +69,6 @@ public class InGameUIController : MonoBehaviour {
         img_bossPortrait.sprite = boss.img_face;
         sld_bossHP.maxValue = boss.maxHP;
         sld_bossHP.value = boss.currHP;
-
-        //block.SetActive(true);
     }
 
     private void LateUpdate() {
