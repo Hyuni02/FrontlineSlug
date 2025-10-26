@@ -79,7 +79,14 @@ public class Doll : MonoBehaviour {
 
         bool moving = hori != 0;
 
-        if (moving) FlipModel(hori < 0);
+        if (moving) {
+            FlipModel(hori < 0);
+            rigid.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }
+        else {
+            rigid.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+        }
+        
         animator.SetBool(para_move, moving);
         curr_state = moving ? CharacterState.move : CharacterState.wait;
     }
