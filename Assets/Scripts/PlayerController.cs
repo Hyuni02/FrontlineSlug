@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
     public static PlayerController instance;
 
     private bool controlMode;
@@ -11,19 +10,20 @@ public class PlayerController : MonoBehaviour
     public Friendly player_rescue;
     public Transform trans_changePos;
     public GameObject crossHair;
+    public GameObject targetArrow;
     [HideInInspector]
     public float hori;
     [HideInInspector]
     public bool changeable = true;
     private void Awake() {
-        if(instance != null) {
+        if (instance != null) {
             Destroy(gameObject);
             return;
         }
         instance = this;
     }
     private void Start() {
-        curDoll = player;       
+        curDoll = player;
         CameraController.instance.SetPlayer(curDoll);
     }
 
@@ -33,10 +33,14 @@ public class PlayerController : MonoBehaviour
     }
 
     public void SetCrossHair(Transform target) {
+        targetArrow.SetActive(target);
+        crossHair.SetActive(target);
+        
         if (target) {
             crossHair.transform.position = target.position;
+            targetArrow.transform.rotation = Quaternion.Euler(0,0, (target.position - transform.position).x);
         }
-        crossHair.SetActive(target);
+        targetArrow.transform.position = curDoll.transform.position;
     }
 
     private void Update() {
@@ -63,7 +67,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeDoll() {
         if (!changeable) return;
-        
+
         controlMode = !controlMode;
         //메인
         if (controlMode) {

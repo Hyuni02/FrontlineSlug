@@ -27,23 +27,21 @@ public abstract class Friendly : Doll {
     private void LateUpdate() {
         enemies = Physics2D.OverlapCircleAll(transform.position, range, LayerMask.GetMask("Enemy"));
 
-        if (enemies.Length == 0) target = null;
-        
-        for (int i = 0; i < enemies.Length; i++) {
-            if (Physics2D.Raycast(transform.position, enemies[i].transform.position)) {
-                if (!target) {
-                    target = enemies[i].transform;
-                }
-                else {
-                    var dis_target = Vector2.Distance(transform.position, target.position);
-                    var dis_new = Vector2.Distance(transform.position, enemies[i].transform.position);
-                    if (dis_target > dis_new) {
-                        target = enemies[i].transform;
-                    }
-                }
+        Transform closestEnemy = null;
+        float minSqrDistance = float.MaxValue;
+
+        foreach (var enemyCollider in enemies)
+        {
+            float sqrDistance = ((Vector2)(enemyCollider.transform.position - transform.position)).sqrMagnitude;
+            if (sqrDistance < minSqrDistance)
+            {
+                minSqrDistance = sqrDistance;
+                closestEnemy = enemyCollider.transform;
             }
         }
-        
+
+        target = closestEnemy;
+
         //락온 이미지
         PlayerController.instance.SetCrossHair(target);
     }
