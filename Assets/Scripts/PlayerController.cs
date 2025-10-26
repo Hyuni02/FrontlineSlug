@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
     public Transform trans_changePos;
     [HideInInspector]
     public float hori;
-
+    [HideInInspector]
+    public bool changeable = true;
     private void Awake() {
         if(instance != null) {
             Destroy(gameObject);
@@ -53,6 +54,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void ChangeDoll() {
+        if (!changeable) return;
+        
         controlMode = !controlMode;
         //메인
         if (controlMode) {
@@ -60,7 +63,9 @@ public class PlayerController : MonoBehaviour
             curDoll = player_rescue;
             player_rescue.transform.position = trans_changePos.position;
             player_rescue.gameObject.SetActive(true);
-            player.gameObject.SetActive(false);
+            if (player.currHP > 0) {
+                player.gameObject.SetActive(false);
+            }
             InGameUIController.instance.SetSlider(player_rescue, player);
         }
         //서브
@@ -69,7 +74,9 @@ public class PlayerController : MonoBehaviour
             curDoll = player;
             player.transform.position = trans_changePos.position;
             player.gameObject.SetActive(true);
-            player_rescue.gameObject.SetActive(false);
+            if (player_rescue.currHP > 0) {
+                player_rescue.gameObject.SetActive(false);
+            }
             InGameUIController.instance.SetSlider(player, player_rescue);
         }
         CameraController.instance.SetPlayer(curDoll);

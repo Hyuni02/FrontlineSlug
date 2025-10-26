@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -116,5 +117,29 @@ public class InGameManager : MonoBehaviour {
         level++;
         PlayerPrefs.SetInt("level", level);
         UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
+    }
+
+    public void DollDie() {
+        if (level < 2) {
+            ToGameOver();
+        }
+        else {
+            if (PlayerController.instance.changeable) {
+                PlayerController.instance.ChangeDoll();
+                PlayerController.instance.changeable = false;
+            }
+            else {
+                ToGameOver();
+            }
+        }
+    }
+    
+    private void ToGameOver() {
+        StartCoroutine(cor_ToGameOver());
+    }
+
+    IEnumerator cor_ToGameOver() {
+        yield return new WaitForSeconds(3);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
     }
 }

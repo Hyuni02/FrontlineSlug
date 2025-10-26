@@ -29,6 +29,7 @@ public class MainMenuController : MonoBehaviour {
     public Button btn_Vector;
     public Button btn_SAT8;
     public Button btn_Kar98k;
+    public Button btn_start;
     
     private List<Button> buttonGroup;
     private e_type type = e_type.main;
@@ -73,6 +74,7 @@ public class MainMenuController : MonoBehaviour {
 
     public void click_SelectCharacter(string name) {
         curr_Select = name;
+        btn_start.interactable = true;
     }
 
     public void click_StartGame() {
@@ -86,6 +88,7 @@ public class MainMenuController : MonoBehaviour {
         pnl_newGame.SetActive(true);
         pnl_background.SetActive(true);
         pnl_background.GetComponent<UIBackground>().Active(pnl_newGame);
+        btn_start.interactable = false;
         Change_UI(e_type.newgame);
 
         if (!PlayerPrefs.HasKey("M4SOPMODII")) {
