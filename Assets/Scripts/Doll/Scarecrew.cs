@@ -9,8 +9,10 @@ public class Scarecrew : Boss
         base.Awake();
         
         speed = 7;
-        dmg = 10;
+        dmg = 20;
         attackInterval = 2;
+        maxHP = 400;
+        currHP = 400;
         
         trans_muzzle2 = transform.Find("muzzle2");
         trans_muzzle3 = transform.Find("muzzle3");

@@ -21544,8 +21544,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.06, y: 0.03, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1768831935}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -54080,9 +54079,6 @@ MonoBehaviour:
   - {fileID: 7007119822861378096, guid: 12ceebf70fb9795449ed0ad6e67275ea, type: 3}
   - {fileID: 7007119822861378096, guid: b0d99dfa3f1494548bbe6a108e4918bb, type: 3}
   - {fileID: 9109574559639096215, guid: 7f016759a509ff04487b991cb598d16f, type: 3}
-  pref_lst_event:
-  - {fileID: 7221281519778205280, guid: c028214ca4d6fe94a8b7ceed3578c689, type: 3}
-  - {fileID: 7221281519778205280, guid: d2866285f7ab154448c3e949f4f0f7f6, type: 3}
   pref_lst_boss:
   - {fileID: 9109574559639096215, guid: b7dd76c4ef1f9fc468ffb78ce9e941a3, type: 3}
   - {fileID: 9109574559639096215, guid: 749c791f91fae55438b85e1bc959b830, type: 3}
@@ -75664,6 +75660,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1768831935}
+  - component: {fileID: 1768831936}
   m_Layer: 0
   m_Name: ChangePos
   m_TagString: Untagged
@@ -75678,13 +75675,26 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768831934}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2, y: 5.98, z: 10}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -5.2599998, y: 6.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 519420032}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1768831936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768831934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7dfbd315ffb5341a3ee68cbfd038b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 4, z: 0}
 --- !u!1 &1803609312
 GameObject:
   m_ObjectHideFlags: 0

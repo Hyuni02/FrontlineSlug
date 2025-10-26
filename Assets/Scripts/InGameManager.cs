@@ -27,7 +27,6 @@ public class InGameManager : MonoBehaviour {
     [Header("Prefabs")]
     public List<GameObject> pref_lst_start;
     public List<GameObject> pref_lst_battle;
-    public List<GameObject> pref_lst_event;
     public List<GameObject> pref_lst_boss;
     public List<GameObject> pref_lst_rescue;
 
@@ -66,11 +65,8 @@ public class InGameManager : MonoBehaviour {
         //Start Point
         SelectFromTilemaps(ref pref_lst_start);
         if (level != 0) {
-            //Tutorial Battle Point
+            //1st Battle Point
             SelectFromTilemaps(ref pref_lst_battle, 1, 2);
-
-            //Event Point
-            SelectFromTilemaps(ref pref_lst_event);
 
             //2nd Battle Point
             SelectFromTilemaps(ref pref_lst_battle, 1, 3);
