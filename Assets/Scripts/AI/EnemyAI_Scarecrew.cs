@@ -1,5 +1,7 @@
 public class EnemyAI_Scarecrew : EnemyAI {
     protected override void SetState() {
+        curr_state = EnemyState.None;
+        
         aiState_Wait = new AIState_WaitFor(this);
         aiState_Attack = new AIState_AttackOnce(this);
         aiState_Move = new AIState_MoveIgnore(this);
@@ -8,6 +10,6 @@ public class EnemyAI_Scarecrew : EnemyAI {
 
     public override void Activate() {
         activate = true;
-        ChangeState(EnemyState.Move);
+        ChangeState(EnemyState.Wait);
     }
 }

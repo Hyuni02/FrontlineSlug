@@ -15,6 +15,7 @@ public class AIState_MoveIgnore : AIState {
         
         //목적지 도착
         if (Mathf.Abs(enemyAI.transform.position.x - pos.position.x) < .2f) {
+            Debug.Log("arrived");
             enemyAI.ChangeState(EnemyAI.EnemyState.Wait);
         }
     }
@@ -24,7 +25,6 @@ public class AIState_MoveIgnore : AIState {
     
     private void SetDestination() {
         pos = enemyAI.GetComponent<MovePoint>().GetPos();
-
         dir = pos.position.x - enemyAI.transform.position.x;
         dir = dir > 0 ? 1 : -1;
     }

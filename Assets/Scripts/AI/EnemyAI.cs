@@ -86,6 +86,10 @@ public class EnemyAI : MonoBehaviour
         curr_aiState.Enter();
     }
 
+    public void LookTarget(Transform target) {
+        enemy.FlipModel((target.transform.position - transform.position).x < 0);
+    }
+
     private void OnDrawGizmos() {
         Gizmos.DrawWireSphere(transform.position, range);
     }

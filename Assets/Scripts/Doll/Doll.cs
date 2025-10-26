@@ -144,7 +144,7 @@ public class Doll : MonoBehaviour {
         }
     }
 
-    protected void FlipModel(bool flip) {
+    public void FlipModel(bool flip) {
         mecanim.skeleton.ScaleX = flip ? -1 : 1;
     }
 

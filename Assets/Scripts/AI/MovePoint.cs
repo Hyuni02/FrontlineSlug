@@ -6,7 +6,7 @@ public class MovePoint : MonoBehaviour {
     private int index = -1;
     //현재가 아닌 무작위 하나 획득
     public Transform GetPos() {
-        index++;
+        index += Random.Range(1, lst_pos.Count);
         index %= lst_pos.Count;
         return lst_pos[index];
     }
