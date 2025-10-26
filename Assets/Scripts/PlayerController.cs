@@ -38,7 +38,11 @@ public class PlayerController : MonoBehaviour {
         
         if (target) {
             crossHair.transform.position = target.position;
-            targetArrow.transform.rotation = Quaternion.Euler(0,0, (target.position - transform.position).x);
+            var dir = target.position - curDoll.transform.position;
+            print(dir);
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            print(angle);
+            targetArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         targetArrow.transform.position = curDoll.transform.position;
     }

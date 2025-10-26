@@ -20,6 +20,7 @@ public abstract class Friendly : Doll {
         Vector2 dir = mecanim.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
         if (target) {
             dir = (target.position - trans_muzzle.position).normalized;
+            FlipModel((target.transform.position - transform.position).x < 0);
         }
         obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
     }
