@@ -22,5 +22,7 @@ public class Boss : Enemy {
         deathDelay = 5;
         base.Die();
         trigger.SetBlock(true);
+        InGameUIController.instance.DisableBossUI();
+        FindObjectOfType<BossExit>().bossDied = true;
     }
 }

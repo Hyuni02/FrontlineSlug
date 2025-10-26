@@ -71,6 +71,11 @@ public class InGameUIController : MonoBehaviour {
         sld_bossHP.value = boss.currHP;
     }
 
+    public void DisableBossUI() {
+        img_bossPortrait.gameObject.SetActive(false);
+        sld_bossHP.gameObject.SetActive(false);
+    }
+
     private void LateUpdate() {
         SetSlider();
 
