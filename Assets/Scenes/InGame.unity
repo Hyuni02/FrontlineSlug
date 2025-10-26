@@ -11781,8 +11781,8 @@ MonoBehaviour:
   lst_rescuable:
   - name: Kar98k
     doll: {fileID: 6063359467173893283, guid: 287149f690310c046b17efe48c45b63e, type: 3}
-  - name: Vector
-    doll: {fileID: 812262235375233064, guid: 2d126b17b67830540a4437d18e3a39ef, type: 3}
+  - name: MP7
+    doll: {fileID: 399036714126057633, guid: 32c322797e05eff49bf76601a701004c, type: 3}
   - name: SAT8
     doll: {fileID: 4407187282219103251, guid: a0e1f37fa0357474c9ba9bdd2c7decde, type: 3}
   - name: M4SOPMODII
@@ -12078,6 +12078,7 @@ MonoBehaviour:
   player_rescue: {fileID: 0}
   trans_changePos: {fileID: 1768831935}
   hori: 0
+  changeable: 1
 --- !u!1 &1625538522
 GameObject:
   m_ObjectHideFlags: 0

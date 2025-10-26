@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour {
@@ -26,7 +27,7 @@ public class MainMenuController : MonoBehaviour {
     [Header("Character Select")]
     private string curr_Select;
     public Button btn_M4SOPMODII;
-    public Button btn_Vector;
+    public Button btn_MP7;
     public Button btn_SAT8;
     public Button btn_Kar98k;
     public Button btn_start;
@@ -96,7 +97,7 @@ public class MainMenuController : MonoBehaviour {
         }
 
         btn_M4SOPMODII.interactable = PlayerPrefs.GetInt("M4SOPMODII") == 1;
-        btn_Vector.interactable = PlayerPrefs.GetInt("Vector") == 1;
+        btn_MP7.interactable = PlayerPrefs.GetInt("MP7") == 1;
         btn_SAT8.interactable = PlayerPrefs.GetInt("SAT8") == 1;
         btn_Kar98k.interactable = PlayerPrefs.GetInt("Kar98k") == 1;
     }
@@ -104,7 +105,7 @@ public class MainMenuController : MonoBehaviour {
     private void initPlayerPrefs() {
         //보유 캐릭터 초기화
         PlayerPrefs.SetInt("M4SOPMODII", 1);
-        PlayerPrefs.SetInt("Vector", 0);
+        PlayerPrefs.SetInt("MP7", 0);
         PlayerPrefs.SetInt("SAT8", 0);
         PlayerPrefs.SetInt("Kar98k", 0);
         //진행도 초기화
