@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GroundChecker : MonoBehaviour {
@@ -10,7 +8,7 @@ public class GroundChecker : MonoBehaviour {
     private void Start() {
         checkBox = GetComponent<BoxCollider2D>();
     }
-    public void OnTriggerEnter2D(Collider2D collision) {
+    public void OnTriggerStay2D(Collider2D collision) {
         isGrounded = true;
     }
     public void OnTriggerExit2D(Collider2D collision) {
