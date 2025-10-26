@@ -3,7 +3,7 @@ public class Ripper : Enemy {
         base.Awake();
 
         speed = 3;
-        dmg = 2;
+        dmg = 5;
         attackInterval = 3;
     }
 }

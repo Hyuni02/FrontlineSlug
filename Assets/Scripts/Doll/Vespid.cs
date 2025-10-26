@@ -1,5 +1,4 @@
-public class Vespid : Enemy
-{
+public class Vespid : Enemy {
     protected override void Awake() {
         base.Awake();
 

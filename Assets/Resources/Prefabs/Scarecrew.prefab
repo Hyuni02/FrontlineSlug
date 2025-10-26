@@ -57,7 +57,8 @@ MonoBehaviour:
   pref_bullet: {fileID: 5910412370262980767, guid: d4ea0397065ca794da12a2218b2ea3b3, type: 3}
   maxHP: 100
   currHP: 100
-  img_face: {fileID: 0}
+  img_face: {fileID: 21300000, guid: e561adb53cdd7144a85545a32afec28c, type: 3}
+  trigger: {fileID: 0}
 --- !u!114 &4626819031444322037
 MonoBehaviour:
   m_ObjectHideFlags: 0
