@@ -7,5 +7,6 @@ public class M4SOPMODII : Friendly {
         attackInterval = 1.5f;
         maxHP = 100;
         currHP = 100;
+        range = 13;
     }
 }

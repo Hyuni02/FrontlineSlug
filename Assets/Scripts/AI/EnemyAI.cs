@@ -11,7 +11,6 @@ public class EnemyAI : MonoBehaviour
         Die
     }
     
-    public int range;
 
     //State
     private EnemyState prev_state = EnemyState.None;
@@ -88,9 +87,5 @@ public class EnemyAI : MonoBehaviour
 
     public void LookTarget(Transform target) {
         enemy.FlipModel((target.transform.position - transform.position).x < 0);
-    }
-
-    private void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

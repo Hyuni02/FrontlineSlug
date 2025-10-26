@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Enemy : Doll {
+public abstract class Enemy : Doll {
     protected EnemyAI enemyAI;
 
     protected override void Awake() {
@@ -18,6 +18,12 @@ public class Enemy : Doll {
                 Attack();
             }
         }
+    }
+    
+    protected override void Shoot() {
+        GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
+        Vector2 dir = (PlayerController.instance.curDoll.transform.position - trans_muzzle.position).normalized;
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
     }
     
     protected override void Die() {

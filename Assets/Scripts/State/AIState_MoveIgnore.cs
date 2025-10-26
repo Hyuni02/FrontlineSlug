@@ -15,7 +15,6 @@ public class AIState_MoveIgnore : AIState {
         
         //목적지 도착
         if (Mathf.Abs(enemyAI.transform.position.x - pos.position.x) < .2f) {
-            Debug.Log("arrived");
             enemyAI.ChangeState(EnemyAI.EnemyState.Wait);
         }
     }

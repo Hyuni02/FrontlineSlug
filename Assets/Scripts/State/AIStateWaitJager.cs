@@ -8,7 +8,7 @@ public class AIStateWaitJager : AIState
     public override void Update() {
         //공격 대상 확인
         GameObject player = PlayerController.instance.curDoll.gameObject;
-        if (Vector2.Distance(player.transform.position, enemyAI.transform.position) < enemyAI.range) {
+        if (Vector2.Distance(player.transform.position, enemyAI.transform.position) < enemyAI.enemy.range) {
             enemyAI.ChangeState(EnemyAI.EnemyState.Attack);
         }
     }

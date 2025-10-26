@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public Friendly player;
     public Friendly player_rescue;
     public Transform trans_changePos;
+    public GameObject crossHair;
     [HideInInspector]
     public float hori;
     [HideInInspector]
@@ -29,6 +30,13 @@ public class PlayerController : MonoBehaviour
     public void SetPlayer(GameObject doll, GameObject rescue = null) {
         player = doll.GetComponent<Friendly>();
         player_rescue = rescue?.GetComponent<Friendly>();
+    }
+
+    public void SetCrossHair(Transform target) {
+        if (target) {
+            crossHair.transform.position = target.position;
+        }
+        crossHair.SetActive(target);
     }
 
     private void Update() {

@@ -5,5 +5,6 @@ public class Vespid : Enemy {
         speed = 2;
         dmg = 5;
         attackInterval = 5;
+        range = 9;
     }
 }

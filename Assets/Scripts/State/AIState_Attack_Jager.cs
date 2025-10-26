@@ -7,7 +7,7 @@ public class AIState_Attack_Jager : AIState {
         enemyAI.enemy.TryAttack(true);
 
         //공격 대상 확인
-        if (Vector2.Distance(player.transform.position, enemyAI.transform.position) >= enemyAI.range) {
+        if (Vector2.Distance(player.transform.position, enemyAI.transform.position) >= enemyAI.enemy.range) {
             enemyAI.ChangeState(EnemyAI.EnemyState.Wait);
         }
     }

@@ -5,5 +5,6 @@ public class Ripper : Enemy {
         speed = 3;
         dmg = 5;
         attackInterval = 3;
+        range = 3;
     }
 }

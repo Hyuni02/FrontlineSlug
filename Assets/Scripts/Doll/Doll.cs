@@ -1,7 +1,7 @@
 using UnityEngine;
 using Spine.Unity;
 
-public class Doll : MonoBehaviour {
+public abstract class Doll : MonoBehaviour {
     public enum CharacterState {
         none, wait, move, attack, die, skill
     }
@@ -45,6 +45,8 @@ public class Doll : MonoBehaviour {
     [SerializeField]
     public int currHP = 100;
     protected int dmg = 10;
+    [HideInInspector]
+    public int range;
 
     protected virtual void Awake() {
         //set component
@@ -107,7 +109,7 @@ public class Doll : MonoBehaviour {
         }
     }
 
-    protected virtual void Attack() {
+    public virtual void Attack() {
         Move(0);
         intervalCounter = attackInterval;
         durationCounter = attakDuration;
@@ -115,11 +117,7 @@ public class Doll : MonoBehaviour {
         curr_state = CharacterState.attack;
     }
 
-    public virtual void Shoot() {
-        GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
-        Vector2 dir = mecanim.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
-        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
-    }
+    protected abstract void Shoot();
 
     public virtual void Hit(BulletData bulletData) {
         currHP -= bulletData.dmg;
@@ -136,7 +134,7 @@ public class Doll : MonoBehaviour {
         gameObject.layer = LayerMask.NameToLayer("DeadBody");
     }
 
-    public void GetEvent(string eventName) {
+    public virtual void GetEvent(string eventName) {
         switch (eventName) {
             case "fire":
                 Shoot();
@@ -150,5 +148,9 @@ public class Doll : MonoBehaviour {
 
     private bool IsGrounded() {
         return groundChecker.isGrounded;
+    }
+    
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

@@ -7,5 +7,6 @@ public class Kar98K : Friendly {
         attackInterval = 2;
         maxHP = 100;
         currHP = 100;
+        range = 16;
     }
 }

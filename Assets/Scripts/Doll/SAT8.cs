@@ -7,5 +7,6 @@ public class SAT8 : Friendly {
         attackInterval = 1.5f;
         maxHP = 120;
         currHP = 120;
+        range = 7;
     }
 }

@@ -7,5 +7,6 @@ public class MP7 : Friendly {
         attackInterval = 1;
         maxHP = 80;
         currHP = 80;
+        range = 10;
     }
 }
