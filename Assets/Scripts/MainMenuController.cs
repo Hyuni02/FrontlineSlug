@@ -167,4 +167,14 @@ public class MainMenuController : MonoBehaviour {
             Mathf.PingPong(Time.time * 0.7f, 1f)
         );
     }
+
+    public void Update() {
+        if (Input.GetKeyDown(KeyCode.P)) {
+
+            PlayerPrefs.SetInt("M4SOPMODII", 1); //초기 캐릭터 지급
+            PlayerPrefs.SetInt("MP7", 1);
+            PlayerPrefs.SetInt("SAT8", 1);
+            PlayerPrefs.SetInt("Kar98k", 1);
+        }
+    }
 }

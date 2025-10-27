@@ -1,3 +1,4 @@
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -65,6 +66,14 @@ public class PlayerController : MonoBehaviour {
             //점프
             if (Input.GetKeyDown(KeyCode.X)) {
                 curDoll.Jump();
+            }
+        }
+
+        //개발자 치트코드
+        if (Input.GetKeyDown(KeyCode.P)) {
+            player.currHP = player.maxHP;
+            if (player_rescue) {
+                player_rescue.currHP = player_rescue.maxHP;
             }
         }
     }

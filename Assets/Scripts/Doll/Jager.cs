@@ -5,6 +5,6 @@ public class Jager : Enemy {
         speed = 1;
         dmg = 15;
         attackInterval = 8;
-        range = 16;
+        range = 13;
     }
 }
