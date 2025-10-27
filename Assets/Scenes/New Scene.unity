@@ -789,6 +789,8 @@ MonoBehaviour:
   player: {fileID: 0}
   player_rescue: {fileID: 0}
   trans_changePos: {fileID: 0}
+  crossHair: {fileID: 0}
+  targetArrow: {fileID: 0}
   hori: 0
   changeable: 1
 --- !u!1001 &6063359465817638160

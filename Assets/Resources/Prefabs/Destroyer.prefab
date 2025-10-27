@@ -157,7 +157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curr_state: 1
-  pref_bullet: {fileID: 5910412370262980767, guid: d4ea0397065ca794da12a2218b2ea3b3, type: 3}
+  pref_bullet: {fileID: 4265736592315137750, guid: a905c9c601ad54d46a2bf9f860528ea2, type: 3}
   maxHP: 100
   currHP: 100
   range: 0
