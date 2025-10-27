@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -12,6 +13,7 @@ public class MainMenuController : MonoBehaviour {
         setting
     }
     
+    public TMP_Text txt_title;
     [Header("Panel")]
     public GameObject pnl_background;
     public GameObject pnl_newGame;
@@ -142,5 +144,13 @@ public class MainMenuController : MonoBehaviour {
     private void click_Exit() {
         print("게임 종료");
         Application.Quit();
+    }
+
+    private void FixedUpdate() {
+        txt_title.color = new Color(
+            Mathf.PingPong(Time.time * 0.5f, 1f),
+            Mathf.PingPong(Time.time * 0.3f, 1f),
+            Mathf.PingPong(Time.time * 0.7f, 1f)
+        );
     }
 }
