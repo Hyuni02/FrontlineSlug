@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 6, y: 1}
   m_EdgeRadius: 0
 --- !u!50 &5910412370262980764
 Rigidbody2D:
@@ -146,6 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rigid: {fileID: 0}
+  pref_hitEffect: {fileID: 7870036644368335379, guid: 5659518df3ea9d04bbb639fa6b2e005b, type: 3}
 --- !u!96 &544559654112656906
 TrailRenderer:
   serializedVersion: 2

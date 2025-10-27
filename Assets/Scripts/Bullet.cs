@@ -18,6 +18,7 @@ public class Bullet : MonoBehaviour {
     protected BulletData data;
     [HideInInspector]
     public Rigidbody2D rigid;
+    public GameObject pref_hitEffect;
 
     protected virtual void Awake() {
         rigid = GetComponent<Rigidbody2D>();
@@ -37,6 +38,7 @@ public class Bullet : MonoBehaviour {
     }
 
     protected virtual void HitEffect() {
-
+        var effect = Instantiate(pref_hitEffect, transform.position, Quaternion.identity);
+        Destroy(effect, 1f);
     }
 }
