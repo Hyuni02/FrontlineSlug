@@ -32,7 +32,7 @@ public abstract class Doll : MonoBehaviour {
     protected Vector2 vec_move;
     protected Vector2 vec_jump;
     protected float speed = 7;
-    protected int jumpPower = 800;
+    protected int jumpPower = 16;
     protected float attackInterval = .5f;
     protected float intervalCounter = 0;
     protected float attakDuration = 0.5f;
@@ -98,7 +98,7 @@ public abstract class Doll : MonoBehaviour {
         if (!IsGrounded()) return;
 
         rigid.velocity = new Vector2(rigid.velocity.x, 0);
-        rigid.AddForce(vec_jump);
+        rigid.AddForce(vec_jump, ForceMode2D.Impulse);
     }
 
     public virtual void TryAttack(bool isPressed) {
