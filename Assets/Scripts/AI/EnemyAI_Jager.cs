@@ -1,4 +1,4 @@
-public class EnemyAIJager : EnemyAI {
+public class EnemyAI_Jager : EnemyAI {
     protected override void SetState() {
         base.SetState();
 

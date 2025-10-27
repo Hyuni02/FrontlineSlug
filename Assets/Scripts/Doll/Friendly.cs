@@ -1,10 +1,11 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.Tilemaps;
+
 public abstract class Friendly : Doll {
     public Sprite img_face;
     public Transform target;
     public Collider2D[] enemies;
+
     protected override void Die() {
         base.Die();
         InGameManager.instance.DollDie();

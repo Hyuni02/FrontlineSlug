@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
@@ -27,6 +26,7 @@ public class PlayerController : MonoBehaviour {
         CameraController.instance.SetPlayer(curDoll);
     }
 
+    //목표 설정 표시
     public void SetCrossHair(Friendly doll, Transform target) {
         if (doll != curDoll) return;
         targetArrow.SetActive(target);

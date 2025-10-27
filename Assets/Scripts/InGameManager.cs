@@ -15,8 +15,6 @@ public class InGameManager : MonoBehaviour {
     public static InGameManager instance;
 
     public Transform spawnPos;
-    // [Header("Player")]
-    // public List<GameObject> lst_player;
     [Header("Tilemps")]
     public Transform trans_grid;
     private List<GameObject> lst_map = new List<GameObject>();
@@ -34,7 +32,8 @@ public class InGameManager : MonoBehaviour {
 
     [HideInInspector]
     public int level = 0;
-
+    
+    //싱글톤 패턴
     private void Awake() {
         if (instance != null) {
             Destroy(gameObject);
@@ -62,6 +61,7 @@ public class InGameManager : MonoBehaviour {
             rescueDoll.SetActive(false);
         }
 
+        //맵 생성
         //Start Point
         SelectFromTilemaps(ref pref_lst_start);
         if (level != 0) {
@@ -79,11 +79,17 @@ public class InGameManager : MonoBehaviour {
         }
 
         //Generate Tilemap
-        Vector2 clampx = InstantiateTilemap(); 
-        
+        Vector2 clampx = InstantiateTilemap();
+        //카메라 클램프 설정
         CameraController.instance.SetCameraClamp(new Vector2(clampx.x - 9, 15), Vector2.zero);
     }
-    
+
+    /// <summary>
+    /// 주어진 배열에서 레벨에 맞는 타일맵을 최소 min개, 최대 max개 선택하여 lst_map에 추가
+    /// </summary>
+    /// <param name="from">주어진 배열</param>
+    /// <param name="min">최속 선택 수</param>
+    /// <param name="max">최대 선택 수</param>
     private void SelectFromTilemaps(ref List<GameObject> from, int min = 1, int max = 2) {
         List<GameObject> lst_filtered
             = new List<GameObject>(from.Where(x => (x.GetComponent<TilemapData>().level == level)));
@@ -96,6 +102,7 @@ public class InGameManager : MonoBehaviour {
         }
     }
 
+    //타일맵 인스턴스화
     private Vector2 InstantiateTilemap() {
         Vector2 prev_pos = Vector2.zero;
         for (int i = 0; i < lst_map.Count; i++) {
@@ -109,17 +116,20 @@ public class InGameManager : MonoBehaviour {
         return prev_pos;
     }
 
+    //다음 레벨로 이동
     public void ToNextLevel() {
         level++;
         PlayerPrefs.SetInt("level", level);
         UnityEngine.SceneManagement.SceneManager.LoadScene("InGame");
     }
 
+    //인형 사망 처리
     public void DollDie() {
         if (level < 2) {
             ToGameOver();
         }
         else {
+            //구출한 인형이 있으면 교체
             if (PlayerController.instance.changeable) {
                 PlayerController.instance.ChangeDoll();
                 PlayerController.instance.changeable = false;
@@ -129,7 +139,8 @@ public class InGameManager : MonoBehaviour {
             }
         }
     }
-    
+
+    //게임 오버 씬으로 이동
     private void ToGameOver() {
         StartCoroutine(cor_ToGameOver());
     }

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class MainMenuController : MonoBehaviour {
@@ -36,6 +35,7 @@ public class MainMenuController : MonoBehaviour {
     private List<Button> buttonGroup;
     private e_type type = e_type.main;
     
+    //클릭한 버튼 유형에 따른 함수 분기
     public void btn_Click(string _type) {
         switch (_type) {
             case "newgame":
@@ -53,6 +53,7 @@ public class MainMenuController : MonoBehaviour {
         }
     }
 
+    //UI 상태에 따른 분기
     private void Change_UI(e_type _type) {
         type = _type;
         switch (type) {
@@ -74,11 +75,13 @@ public class MainMenuController : MonoBehaviour {
         }
     }
 
+    //선택한 캐릭터 이름을 임시 저장
     public void click_SelectCharacter(string name) {
         curr_Select = name;
         btn_start.interactable = true;
     }
 
+    //게임 시작 버튼 - 선택한 캐릭터를 저장(이후 InGame 씬에서 사용)
     public void click_StartGame() {
         PlayerPrefs.SetString("main", curr_Select);
         PlayerPrefs.SetString("rescue", null);
@@ -87,10 +90,12 @@ public class MainMenuController : MonoBehaviour {
         SceneManager.LoadScene("InGame");
     }
 
+    //저장 데이터 초기화
     public void ClearData() {
         PlayerPrefs.DeleteAll();
     }
 
+    //새로운 게임 생성 버튼
     private void click_NewGame() {
         pnl_newGame.SetActive(true);
         pnl_background.SetActive(true);
@@ -98,21 +103,24 @@ public class MainMenuController : MonoBehaviour {
         btn_start.interactable = false;
         Change_UI(e_type.newgame);
 
+        //데이터 초기화
         if (!PlayerPrefs.HasKey("playing")) {
             initPlayerPrefs(true);
         }
 
+        //보유한 캐릭터에 따라 버튼 활성화
         btn_M4SOPMODII.interactable = PlayerPrefs.GetInt("M4SOPMODII") == 1;
         btn_MP7.interactable = PlayerPrefs.GetInt("MP7") == 1;
         btn_SAT8.interactable = PlayerPrefs.GetInt("SAT8") == 1;
         btn_Kar98k.interactable = PlayerPrefs.GetInt("Kar98k") == 1;
     }
 
+    //데이터 초기화
     public static void initPlayerPrefs(bool hardReset = false) {
-        PlayerPrefs.SetInt("playing", 0);
+        PlayerPrefs.SetInt("playing", 0); //게임 진행 여부
         //보유 캐릭터 초기화
-        if(hardReset) {
-            PlayerPrefs.SetInt("M4SOPMODII", 1);
+        if (hardReset) {
+            PlayerPrefs.SetInt("M4SOPMODII", 1); //초기 캐릭터 지급
             PlayerPrefs.SetInt("MP7", 0);
             PlayerPrefs.SetInt("SAT8", 0);
             PlayerPrefs.SetInt("Kar98k", 0);
@@ -123,17 +131,21 @@ public class MainMenuController : MonoBehaviour {
         PlayerPrefs.SetInt("level", 0);
     }
 
+    //이어하기 버튼
     private void click_LoadGame() {
         Change_UI(e_type.loadgame);
+        //진행 중인 게임이 없으면 새 게임 생성으로 이동
         if (PlayerPrefs.GetInt("playing") == 0) {
             pnl_background.GetComponent<UIBackground>().click_Close();
             click_NewGame();
         }
+        //진행 중인 게임이 있으면 인게임 씬으로 이동
         else {
             SceneManager.LoadScene("InGame");
         }
     }
 
+    //설정 버튼
     private void click_Setting() {
         pnl_setting.SetActive(true);
         pnl_background.SetActive(true);
@@ -141,11 +153,13 @@ public class MainMenuController : MonoBehaviour {
         Change_UI(e_type.setting);
     }
 
+    //종료 버튼
     private void click_Exit() {
         print("게임 종료");
         Application.Quit();
     }
 
+    //심심한 게임 타이틀에 활기를
     private void FixedUpdate() {
         txt_title.color = new Color(
             Mathf.PingPong(Time.time * 0.5f, 1f),

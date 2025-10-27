@@ -35,12 +35,14 @@ public class CameraController : MonoBehaviour {
         clampMin = cmin;
     }
 
+    //보스룸 진입
     public void EnterBossRoom(Transform pivot, float size) {
         followPlayer = false;
         bossRoom = pivot;
         cam.orthographicSize = size;
     }
 
+    //보스룸 퇴장
     public void ExitBossRoom() {
         followPlayer = true;
         cam.orthographicSize = defaultSize;

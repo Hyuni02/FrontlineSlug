@@ -1,5 +1,5 @@
 using UnityEngine;
-public class Boss : Enemy {
+public abstract class Boss : Enemy {
     public Sprite img_face;
     private int attackCounter = 2;
     public BossTrigger trigger;
