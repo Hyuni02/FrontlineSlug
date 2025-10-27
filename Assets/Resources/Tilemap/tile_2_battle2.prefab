@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2123606037465611479}
   - component: {fileID: 8901757613043061743}
   - component: {fileID: 2420499751513976892}
-  m_Layer: 10
+  m_Layer: 14
   m_Name: EnemyTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2349,27 +2349,19 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 7590547603998979508}
     m_ColliderPaths:
-    - - X: 330000100
-        Y: 29999959
-      - X: 330000100
-        Y: 40000041
-      - X: 330000041
-        Y: 40000100
-      - X: 289999959
-        Y: 40000100
-      - X: 289999900
-        Y: 40000041
-      - X: 289999900
-        Y: 29999959
-      - X: 289999959
-        Y: 29999900
-      - X: 330000041
-        Y: 29999900
+    - - X: 330000000
+        Y: 40000000
+      - X: 290000000
+        Y: 40000000
+      - X: 290000000
+        Y: 30000000
+      - X: 330000000
+        Y: 30000000
     - - X: 180000000
         Y: 40000000
-      - X: 150000100
+      - X: 150000000
         Y: 40000000
-      - X: 150000100
+      - X: 150000000
         Y: 30000000
       - X: 180000000
         Y: 30000000
@@ -2439,14 +2431,14 @@ CompositeCollider2D:
         Y: -50000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 32.999973, y: 2.99999}
-      - {x: 32.999973, y: 4.00001}
-      - {x: 28.99999, y: 3.9999747}
-      - {x: 29.000027, y: 2.99999}
+    - - {x: 32.999973, y: 3}
+      - {x: 32.999973, y: 4}
+      - {x: 29, y: 3.999971}
+      - {x: 29.000029, y: 3}
     - - {x: 17.999971, y: 3}
       - {x: 17.999971, y: 4}
-      - {x: 15.00001, y: 3.999971}
-      - {x: 15.00004, y: 3}
+      - {x: 15, y: 3.999971}
+      - {x: 15.000029, y: 3}
     - - {x: 37.999973, y: -5}
       - {x: 37.999973, y: -2}
       - {x: 29, y: -1.9999707}
@@ -2595,11 +2587,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7492484005743833602, guid: 534ea266f556fde41b8a01df1908dd80, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.6216054
+      value: 0.6216059
       objectReference: {fileID: 0}
     - target: {fileID: 7492484005743833602, guid: 534ea266f556fde41b8a01df1908dd80, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.49332246
+      value: -0.49332258
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 534ea266f556fde41b8a01df1908dd80, type: 3}
@@ -2685,7 +2677,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2601083541248162669, guid: 5e2266a302960db4b944870fe4db3770, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.45540676
+      value: -0.45540687
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e2266a302960db4b944870fe4db3770, type: 3}

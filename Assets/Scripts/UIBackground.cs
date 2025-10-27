@@ -10,7 +10,7 @@ public class UIBackground : MonoBehaviour {
     }
     
     public void click_Close() {
-        pnl_target.SetActive(false);
+        pnl_target?.SetActive(false);
         gameObject.SetActive(false);
     }
 }

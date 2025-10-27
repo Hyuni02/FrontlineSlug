@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour {
     private Friendly player;
     private Transform bossRoom;
     private bool followPlayer = true;
-    private float speed = 0.01f;
+    private float speed = 0.03f;
     public Vector3 offset;
 
     public Vector2 clampMax;
