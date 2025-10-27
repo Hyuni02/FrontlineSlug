@@ -43,18 +43,19 @@ public abstract class Friendly : Doll {
                     }
                 }
             }
-
-            //락온 이미지
-            PlayerController.instance.targetArrow.SetActive(target);
-            PlayerController.instance.crossHair.SetActive(target);
-        
-            if (target) {
-                PlayerController.instance.crossHair.transform.position = target.position;
-                var dir = target.position - PlayerController.instance.curDoll.transform.position;
-                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-                PlayerController.instance.targetArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-            }
-            PlayerController.instance.targetArrow.transform.position = PlayerController.instance.curDoll.transform.position;
         }
+
+        //락온 이미지
+        PlayerController.instance.targetArrow.SetActive(target);
+        PlayerController.instance.crossHair.SetActive(target);
+
+        if (target) {
+            PlayerController.instance.crossHair.transform.position = target.position;
+            var dir = target.position - PlayerController.instance.curDoll.transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            PlayerController.instance.targetArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        PlayerController.instance.targetArrow.transform.position = PlayerController.instance.curDoll.transform.position;
+
     }
 }
