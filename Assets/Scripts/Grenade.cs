@@ -15,6 +15,14 @@ public class Grenade : Bullet {
         rigid.AddForce(Vector2.up * distance, ForceMode2D.Impulse);
     }
 
+    private void Update() {
+        Vector2 velocity = rigid.velocity;
+        float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+        var targetRot = Quaternion.Euler(0, 0, angle - 90);
+        obj.rotation = Quaternion.Slerp(obj.rotation, targetRot, Time.deltaTime * 10);
+    }
+    
+
     public override void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.layer == data.from.layer) return;
         Collider2D[] collider2Ds = Physics2D.OverlapCircleAll(transform.position, range, LayerMask.GetMask("Player"));

@@ -15,6 +15,7 @@ public abstract class Doll : MonoBehaviour {
     protected string para_move = "move";
     protected string para_attack = "attack";
     protected string para_die = "die";
+    protected string para_skill = "skill";
     protected string para_attackPressed = "attackPressed";
     protected string para_attackCounter = "attackCounter";
     protected string para_victory = "victory";
@@ -115,6 +116,11 @@ public abstract class Doll : MonoBehaviour {
         durationCounter = attakDuration;
         animator.SetTrigger(para_attack);
         curr_state = CharacterState.attack;
+    }
+
+    public virtual void Skill() {
+        animator.SetTrigger(para_skill);
+        curr_state = CharacterState.skill;
     }
 
     protected abstract void Shoot();

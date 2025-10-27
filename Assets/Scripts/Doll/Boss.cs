@@ -3,6 +3,7 @@ public class Boss : Enemy {
     public Sprite img_face;
     private int attackCounter = 2;
     public BossTrigger trigger;
+
     public override void TryAttack(bool isPressed) {
         if (isPressed) {
             GameObject player = PlayerController.instance.curDoll.gameObject;

@@ -16,7 +16,8 @@ public class BulletData {
 
 public class Bullet : MonoBehaviour {
     protected BulletData data;
-    protected Rigidbody2D rigid;
+    [HideInInspector]
+    public Rigidbody2D rigid;
 
     protected virtual void Awake() {
         rigid = GetComponent<Rigidbody2D>();

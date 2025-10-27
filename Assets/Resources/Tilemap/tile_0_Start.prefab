@@ -97,8 +97,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '  move'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 19f34b9c958dc5748ba99d34d8f4eb06, type: 2}
+  m_sharedMaterial: {fileID: -1017034647822264780, guid: 19f34b9c958dc5748ba99d34d8f4eb06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -276,8 +276,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '  attack'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 19f34b9c958dc5748ba99d34d8f4eb06, type: 2}
+  m_sharedMaterial: {fileID: -1017034647822264780, guid: 19f34b9c958dc5748ba99d34d8f4eb06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -410,8 +410,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: '  jump'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 19f34b9c958dc5748ba99d34d8f4eb06, type: 2}
+  m_sharedMaterial: {fileID: -1017034647822264780, guid: 19f34b9c958dc5748ba99d34d8f4eb06, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4843,7 +4843,17 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 6479087305136112870}
     m_ColliderPaths:
-    - - X: 650000000
+    - - X: -100000000
+        Y: 140000000
+      - X: -100000000
+        Y: -20000000
+      - X: -90000000
+        Y: -20000000
+      - X: -90000000
+        Y: -50000000
+      - X: 650000000
+        Y: -50000000
+      - X: 650000000
         Y: -20000000
       - X: 460000000
         Y: -20000000
@@ -4862,18 +4872,6 @@ CompositeCollider2D:
       - X: 440000000
         Y: -12708334
       - X: 431875008
-        Y: -10000000
-      - X: 360000100
-        Y: -10000000
-      - X: 360000100
-        Y: -10000041
-      - X: 360000041
-        Y: -10000100
-      - X: 349999959
-        Y: -10000100
-      - X: 349999900
-        Y: -10000041
-      - X: 349999900
         Y: -10000000
       - X: 267708336
         Y: -10000000
@@ -4909,16 +4907,6 @@ CompositeCollider2D:
         Y: -20000000
       - X: -90000000
         Y: 140000000
-      - X: -100000000
-        Y: 140000000
-      - X: -100000000
-        Y: -20000000
-      - X: -90000000
-        Y: -20000000
-      - X: -90000000
-        Y: -50000000
-      - X: 650000000
-        Y: -50000000
     - - X: 210000000
         Y: 40625000
       - X: 210000000

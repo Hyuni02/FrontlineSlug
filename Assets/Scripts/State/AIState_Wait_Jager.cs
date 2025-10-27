@@ -1,7 +1,7 @@
 using UnityEngine;
-public class AIStateWaitJager : AIState
+public class AIState_Wait_Jager : AIState
 {
-    public AIStateWaitJager(EnemyAI enemyAI) : base(enemyAI) { }
+    public AIState_Wait_Jager(EnemyAI enemyAI) : base(enemyAI) { }
     public override void Enter() {
         enemyAI.enemy.Move(0);
     }
