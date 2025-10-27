@@ -173,10 +173,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curr_state: 1
-  pref_bullet: {fileID: 5910412370262980767, guid: 48e76f7530e6ecd48967e66565715a08, type: 3}
+  pref_bullet: {fileID: 5910412370262980767, guid: 0cfa7db550110c249ab52c1f3d0f045c, type: 3}
   maxHP: 100
   currHP: 100
+  range: 0
   img_face: {fileID: 21300000, guid: 6fec3092fb00d9b40bc0a14db657c2f1, type: 3}
+  target: {fileID: 0}
+  enemies: []
 --- !u!114 &6063359467173893287
 MonoBehaviour:
   m_ObjectHideFlags: 0
