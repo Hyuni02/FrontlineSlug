@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 public abstract class Friendly : Doll {
     public Sprite img_face;
     public Transform target;
@@ -31,31 +32,26 @@ public abstract class Friendly : Doll {
         if (enemies.Length == 0) target = null;
 
         for (int i = 0; i < enemies.Length; i++) {
-            if (Physics2D.Raycast(transform.position, enemies[i].transform.position)) {
+            var dis_new = Vector2.Distance(transform.position, enemies[i].transform.position);
+            if (!Physics2D.Raycast(transform.position, enemies[i].transform.position - transform.position, dis_new, LayerMask.GetMask("Tilemap"))) {
                 if (!target) {
                     target = enemies[i].transform;
                 }
                 else {
                     var dis_target = Vector2.Distance(transform.position, target.position);
-                    var dis_new = Vector2.Distance(transform.position, enemies[i].transform.position);
                     if (dis_target > dis_new) {
                         target = enemies[i].transform;
                     }
                 }
             }
+            else {
+                if(target == enemies[i].transform) {
+                    target = null;
+                }
+            }
         }
 
         //락온 이미지
-        PlayerController.instance.targetArrow.SetActive(target);
-        PlayerController.instance.crossHair.SetActive(target);
-
-        if (target) {
-            PlayerController.instance.crossHair.transform.position = target.position;
-            var dir = target.position - PlayerController.instance.curDoll.transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            PlayerController.instance.targetArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-        PlayerController.instance.targetArrow.transform.position = PlayerController.instance.curDoll.transform.position;
-
+        PlayerController.instance.SetCrossHair(this, target);
     }
 }

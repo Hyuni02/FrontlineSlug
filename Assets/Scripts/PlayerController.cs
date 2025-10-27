@@ -27,6 +27,21 @@ public class PlayerController : MonoBehaviour {
         CameraController.instance.SetPlayer(curDoll);
     }
 
+    public void SetCrossHair(Friendly doll, Transform target) {
+        if (doll != curDoll) return;
+        targetArrow.SetActive(target);
+        crossHair.SetActive(target);
+
+        if (target) {
+            crossHair.transform.position = target.position;
+            var dir = target.position - curDoll.transform.position;
+            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            targetArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        targetArrow.transform.position = curDoll.transform.position;
+
+    }
+
     public void SetPlayer(GameObject doll, GameObject rescue = null) {
         player = doll.GetComponent<Friendly>();
         player_rescue = rescue?.GetComponent<Friendly>();
