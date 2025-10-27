@@ -32,19 +32,6 @@ public class PlayerController : MonoBehaviour {
         player_rescue = rescue?.GetComponent<Friendly>();
     }
 
-    public void SetCrossHair(Transform target) {
-        targetArrow.SetActive(target);
-        crossHair.SetActive(target);
-        
-        if (target) {
-            crossHair.transform.position = target.position;
-            var dir = target.position - curDoll.transform.position;
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            targetArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-        targetArrow.transform.position = curDoll.transform.position;
-    }
-
     private void Update() {
         hori = Input.GetAxisRaw("Horizontal");
 

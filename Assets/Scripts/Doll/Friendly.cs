@@ -3,7 +3,7 @@ using UnityEngine;
 public abstract class Friendly : Doll {
     public Sprite img_face;
     public Transform target;
-    private Collider2D[] enemies;
+    public Collider2D[] enemies;
     protected override void Die() {
         base.Die();
         InGameManager.instance.DollDie();
@@ -14,7 +14,7 @@ public abstract class Friendly : Doll {
         yield return new WaitForSeconds(3);
         gameObject.SetActive(false);
     }
-    
+
     protected override void Shoot() {
         GameObject obj = Instantiate(pref_bullet, trans_muzzle.position, Quaternion.identity);
         Vector2 dir = mecanim.skeleton.ScaleX > 0 ? Vector2.right : Vector2.left;
@@ -28,22 +28,33 @@ public abstract class Friendly : Doll {
     private void LateUpdate() {
         enemies = Physics2D.OverlapCircleAll(transform.position, range, LayerMask.GetMask("Enemy"));
 
-        Transform closestEnemy = null;
-        float minSqrDistance = float.MaxValue;
+        if (enemies.Length == 0) target = null;
 
-        foreach (var enemyCollider in enemies)
-        {
-            float sqrDistance = ((Vector2)(enemyCollider.transform.position - transform.position)).sqrMagnitude;
-            if (sqrDistance < minSqrDistance)
-            {
-                minSqrDistance = sqrDistance;
-                closestEnemy = enemyCollider.transform;
+        for (int i = 0; i < enemies.Length; i++) {
+            if (Physics2D.Raycast(transform.position, enemies[i].transform.position)) {
+                if (!target) {
+                    target = enemies[i].transform;
+                }
+                else {
+                    var dis_target = Vector2.Distance(transform.position, target.position);
+                    var dis_new = Vector2.Distance(transform.position, enemies[i].transform.position);
+                    if (dis_target > dis_new) {
+                        target = enemies[i].transform;
+                    }
+                }
             }
+
+            //락온 이미지
+            PlayerController.instance.targetArrow.SetActive(target);
+            PlayerController.instance.crossHair.SetActive(target);
+        
+            if (target) {
+                PlayerController.instance.crossHair.transform.position = target.position;
+                var dir = target.position - PlayerController.instance.curDoll.transform.position;
+                float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+                PlayerController.instance.targetArrow.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+            }
+            PlayerController.instance.targetArrow.transform.position = PlayerController.instance.curDoll.transform.position;
         }
-
-        target = closestEnemy;
-
-        //락온 이미지
-        PlayerController.instance.SetCrossHair(target);
     }
 }
