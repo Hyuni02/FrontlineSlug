@@ -1,5 +1,4 @@
 using Spine.Unity;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -44,16 +43,14 @@ public class EndingController : MonoBehaviour {
             default:
                 break;
         }
+
+        //구출 캐릭터 해금
+        PlayerPrefs.SetInt(PlayerPrefs.GetString("rescue"), 1);
+
+        MainMenuController.initPlayerPrefs();
     }
 
     public void click_toMain() {
-        //보유 캐릭터 초기화
-        PlayerPrefs.SetInt(PlayerPrefs.GetString("rescue"), 1);
-        //진행도 초기화
-        PlayerPrefs.SetString("main",null); //게임 진입 시 선택한 캐릭터
-        PlayerPrefs.SetString("rescue",null); //게임에서 구출한 캐릭터
-        PlayerPrefs.SetInt("level", 0);
-        
         SceneManager.LoadScene("MainMenu");
     }
 }

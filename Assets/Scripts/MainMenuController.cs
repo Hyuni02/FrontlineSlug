@@ -15,7 +15,6 @@ public class MainMenuController : MonoBehaviour {
     [Header("Panel")]
     public GameObject pnl_background;
     public GameObject pnl_newGame;
-    public GameObject pnl_saveSlot;
     public GameObject pnl_setting;
     
     [Header("Button Group")]
@@ -82,7 +81,12 @@ public class MainMenuController : MonoBehaviour {
         PlayerPrefs.SetString("main", curr_Select);
         PlayerPrefs.SetString("rescue", null);
         PlayerPrefs.SetInt("level", 0);
+        PlayerPrefs.SetInt("playing", 1);
         SceneManager.LoadScene("InGame");
+    }
+
+    public void ClearData() {
+        PlayerPrefs.DeleteAll();
     }
 
     private void click_NewGame() {
@@ -92,8 +96,8 @@ public class MainMenuController : MonoBehaviour {
         btn_start.interactable = false;
         Change_UI(e_type.newgame);
 
-        if (!PlayerPrefs.HasKey("M4SOPMODII")) {
-            initPlayerPrefs();
+        if (!PlayerPrefs.HasKey("playing")) {
+            initPlayerPrefs(true);
         }
 
         btn_M4SOPMODII.interactable = PlayerPrefs.GetInt("M4SOPMODII") == 1;
@@ -102,25 +106,30 @@ public class MainMenuController : MonoBehaviour {
         btn_Kar98k.interactable = PlayerPrefs.GetInt("Kar98k") == 1;
     }
 
-    private void initPlayerPrefs() {
+    public static void initPlayerPrefs(bool hardReset = false) {
+        PlayerPrefs.SetInt("playing", 0);
         //보유 캐릭터 초기화
-        PlayerPrefs.SetInt("M4SOPMODII", 1);
-        PlayerPrefs.SetInt("MP7", 0);
-        PlayerPrefs.SetInt("SAT8", 0);
-        PlayerPrefs.SetInt("Kar98k", 0);
+        if(hardReset) {
+            PlayerPrefs.SetInt("M4SOPMODII", 1);
+            PlayerPrefs.SetInt("MP7", 0);
+            PlayerPrefs.SetInt("SAT8", 0);
+            PlayerPrefs.SetInt("Kar98k", 0);
+        }
         //진행도 초기화
         PlayerPrefs.SetString("main",null); //게임 진입 시 선택한 캐릭터
         PlayerPrefs.SetString("rescue",null); //게임에서 구출한 캐릭터
         PlayerPrefs.SetInt("level", 0);
-        //업적 초기화
-        
     }
 
     private void click_LoadGame() {
-        pnl_saveSlot.SetActive(true);
-        pnl_background.SetActive(true);
-        pnl_background.GetComponent<UIBackground>().Active(pnl_saveSlot);
         Change_UI(e_type.loadgame);
+        if (PlayerPrefs.GetInt("playing") == 0) {
+            pnl_background.GetComponent<UIBackground>().click_Close();
+            click_NewGame();
+        }
+        else {
+            SceneManager.LoadScene("InGame");
+        }
     }
 
     private void click_Setting() {

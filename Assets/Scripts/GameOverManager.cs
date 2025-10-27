@@ -49,6 +49,8 @@ public class GameOverManager : MonoBehaviour {
         }
         print(main);
         print(sub);
+
+        MainMenuController.initPlayerPrefs();
     }
 
     public void ToMainMenu() {
