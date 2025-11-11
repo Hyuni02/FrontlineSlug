@@ -1,7 +1,17 @@
 {
     "objectsData": [
         {
+            "colors": [],
+            "styles": [],
+            "showComponents": [],
+            "sceneName": "MainMenu"
+        },
+        {
             "colors": [
+                {
+                    "objID": "InGame_InGameManager_1",
+                    "colorValue": "FD8989FF"
+                },
                 {
                     "objID": "InGame_Grid_9",
                     "colorValue": "D900FFFF"
@@ -13,6 +23,10 @@
                 {
                     "objID": "InGame_Field_8",
                     "colorValue": "914FADFF"
+                },
+                {
+                    "objID": "InGame_PlayerController_2",
+                    "colorValue": "85FF8EFF"
                 }
             ],
             "styles": [
@@ -26,6 +40,10 @@
                 },
                 {
                     "objID": "InGame_Main Camera_0",
+                    "styleType": 0
+                },
+                {
+                    "objID": "InGame_Canvas_4",
                     "styleType": 0
                 }
             ],

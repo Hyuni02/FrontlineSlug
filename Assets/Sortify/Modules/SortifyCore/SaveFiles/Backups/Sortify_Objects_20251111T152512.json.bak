@@ -1,6 +1,12 @@
 {
     "objectsData": [
         {
+            "colors": [],
+            "styles": [],
+            "showComponents": [],
+            "sceneName": "MainMenu"
+        },
+        {
             "colors": [
                 {
                     "objID": "InGame_InGameManager_1",
@@ -20,7 +26,7 @@
                 },
                 {
                     "objID": "InGame_PlayerController_2",
-                    "colorValue": "6EEC76FF"
+                    "colorValue": "85FF8EFF"
                 }
             ],
             "styles": [
@@ -35,6 +41,10 @@
                 {
                     "objID": "InGame_Main Camera_0",
                     "styleType": 0
+                },
+                {
+                    "objID": "InGame_Canvas_4",
+                    "styleType": 1
                 }
             ],
             "showComponents": [],

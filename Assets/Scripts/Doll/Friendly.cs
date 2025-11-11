@@ -28,29 +28,33 @@ public abstract class Friendly : Doll {
     }
 
     private void LateUpdate() {
+        AutoAim();
+    }
+
+    private void AutoAim() {
         enemies = Physics2D.OverlapCircleAll(transform.position, range, LayerMask.GetMask("Enemy"));
 
-        if (enemies.Length == 0) target = null;
+        Transform bestTarget = null;
+        float closestDistanceSqr = Mathf.Infinity;
 
-        for (int i = 0; i < enemies.Length; i++) {
-            var dis_new = Vector2.Distance(transform.position, enemies[i].transform.position);
-            if (!Physics2D.Raycast(transform.position, enemies[i].transform.position - transform.position, dis_new, LayerMask.GetMask("Tilemap"))) {
-                if (!target) {
-                    target = enemies[i].transform;
-                }
-                else {
-                    var dis_target = Vector2.Distance(transform.position, target.position);
-                    if (dis_target > dis_new) {
-                        target = enemies[i].transform;
-                    }
-                }
+        foreach (Collider2D enemyCollider in enemies) {
+            Vector2 directionToEnemy = enemyCollider.transform.position - transform.position;
+            float dSqrToEnemy = directionToEnemy.sqrMagnitude;
+
+            // 현재까지 찾은 가장 가까운 적보다 멀리 있다면 더 이상 확인할 필요 없음
+            if (dSqrToEnemy > closestDistanceSqr) {
+                continue;
             }
-            else {
-                if(target == enemies[i].transform) {
-                    target = null;
-                }
+
+            // 장애물(Tilemap) 확인
+            if (!Physics2D.Raycast(transform.position, directionToEnemy.normalized, directionToEnemy.magnitude, LayerMask.GetMask("Tilemap"))) {
+                // 장애물이 없다면, 이 적을 가장 가까운 타겟으로 설정
+                closestDistanceSqr = dSqrToEnemy;
+                bestTarget = enemyCollider.transform;
             }
         }
+
+        target = bestTarget;
 
         //락온 이미지
         PlayerController.instance.SetCrossHair(this, target);
