@@ -564,7 +564,20 @@ PlayerSettings:
   webGLLinkerTarget: 1
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
-  scriptingDefineSymbols: {}
+  scriptingDefineSymbols:
+    1: SORTIFY
+    7: SORTIFY
+    13: SORTIFY
+    14: SORTIFY
+    19: SORTIFY
+    21: SORTIFY
+    25: SORTIFY
+    27: SORTIFY
+    28: SORTIFY
+    29: SORTIFY
+    30: SORTIFY
+    32: SORTIFY
+    33: SORTIFY
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend: {}

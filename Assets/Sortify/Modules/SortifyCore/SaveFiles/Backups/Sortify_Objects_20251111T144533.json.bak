@@ -1,0 +1,44 @@
+{
+    "objectsData": [
+        {
+            "colors": [
+                {
+                    "objID": "InGame_InGameManager_1",
+                    "colorValue": "FD8989FF"
+                },
+                {
+                    "objID": "InGame_Grid_9",
+                    "colorValue": "D900FFFF"
+                },
+                {
+                    "objID": "InGame_UI_3",
+                    "colorValue": "303030FF"
+                },
+                {
+                    "objID": "InGame_Field_8",
+                    "colorValue": "914FADFF"
+                },
+                {
+                    "objID": "InGame_PlayerController_2",
+                    "colorValue": "6EEC76FF"
+                }
+            ],
+            "styles": [
+                {
+                    "objID": "InGame_UI_3",
+                    "styleType": 1
+                },
+                {
+                    "objID": "InGame_Field_8",
+                    "styleType": 1
+                },
+                {
+                    "objID": "InGame_Main Camera_0",
+                    "styleType": 0
+                }
+            ],
+            "showComponents": [],
+            "sceneName": "InGame"
+        }
+    ]
+}
