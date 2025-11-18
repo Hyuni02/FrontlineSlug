@@ -24,8 +24,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4221067303474726255}
-  m_LocalRotation: {x: -0, y: -0, z: -0.999969, w: 0.00787341}
-  m_LocalPosition: {x: -0.7465263, y: 0.11958277, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.70282286, w: 0.71136487}
+  m_LocalPosition: {x: -0.3487295, y: 0.44208276, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6276851274792633460}
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1fd8daaed7b64148a34acb96ba14ce1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonRenderer: {fileID: 0}
+  skeletonRenderer: {fileID: 6849890521709880123}
   boneName: muzzle
   followXYPosition: 1
   followZPosition: 1
@@ -315,9 +315,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curr_state: 1
+  status: {fileID: 11400000, guid: 705830d993822d441ba9c32c5c761c91, type: 2}
   pref_bullet: {fileID: 5910412370262980767, guid: d4ea0397065ca794da12a2218b2ea3b3, type: 3}
-  maxHP: 100
-  currHP: 20
+  curHP: 0
 --- !u!114 &7844682192428776144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +330,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4dcbb1fca8e9004caf6652f7957a62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 0
   curr_state: 1
   enemy: {fileID: 0}
   activate: 0

@@ -9,12 +9,6 @@ public class Destroyer : Boss {
     protected override void Awake() {
         base.Awake();
 
-        speed = 5;
-        dmg = 30;
-        attackInterval = 2;
-        maxHP = 800;
-        currHP = 800;
-
         trans_muzzle2 = transform.Find("muzzle2");
     }
 
@@ -42,13 +36,13 @@ public class Destroyer : Boss {
     protected void Shoot2() {
         GameObject obj = Instantiate(pref_bullet, trans_muzzle2.position, Quaternion.identity);
         Vector2 dir = (PlayerController.instance.curDoll.transform.position - trans_muzzle2.position).normalized;
-        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, status.dmg, 24, dir));
     }
 
     protected void ShootHigh(Transform muzzle) {
         GameObject obj = Instantiate(pref_bullet, muzzle.position, Quaternion.identity);
         Vector2 dir = Vector2.up;
-        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, status.dmg, 24, dir));
         obj.GetComponent<Bullet>().rigid.gravityScale = 0;
         if (skillUsed == false) {
             skillUsed = true;
@@ -68,7 +62,7 @@ public class Destroyer : Boss {
             Vector3 pos = trans_rain.position + new Vector3(i * j * 3, 0, 0);
             GameObject obj = Instantiate(pref_bullet, pos, Quaternion.identity);
             Vector2 dir = Vector2.down;
-            obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 0, dir));
+            obj.GetComponent<Bullet>().init(new BulletData(gameObject, status.dmg, 0, dir));
             yield return new WaitForSeconds(.7f);
         }
         skillUsed = false;

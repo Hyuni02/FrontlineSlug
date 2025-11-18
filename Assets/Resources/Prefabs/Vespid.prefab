@@ -206,9 +206,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curr_state: 1
+  status: {fileID: 11400000, guid: d089fc0a80a241741ba2d8ccd075101d, type: 2}
   pref_bullet: {fileID: 5910412370262980767, guid: d4ea0397065ca794da12a2218b2ea3b3, type: 3}
   maxHP: 100
-  currHP: 100
+  curHP: 0
+  range: 0
 --- !u!114 &2601083540919537036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -221,7 +223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0586a6edf70bac44f8aee904b9a15639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 9
   curr_state: 1
   enemy: {fileID: 0}
   activate: 0

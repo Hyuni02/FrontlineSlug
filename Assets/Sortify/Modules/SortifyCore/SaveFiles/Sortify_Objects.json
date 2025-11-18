@@ -1,12 +1,6 @@
 {
     "objectsData": [
         {
-            "colors": [],
-            "styles": [],
-            "showComponents": [],
-            "sceneName": "MainMenu"
-        },
-        {
             "colors": [
                 {
                     "objID": "InGame_InGameManager_1",
@@ -49,6 +43,12 @@
             ],
             "showComponents": [],
             "sceneName": "InGame"
+        },
+        {
+            "colors": [],
+            "styles": [],
+            "showComponents": [],
+            "sceneName": "MainMenu"
         }
     ]
 }

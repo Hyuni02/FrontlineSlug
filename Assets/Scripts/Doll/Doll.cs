@@ -32,22 +32,15 @@ public abstract class Doll : MonoBehaviour {
     //variable
     protected Vector2 vec_move;
     protected Vector2 vec_jump;
-    protected float speed = 7;
+    public DollStatus status;   
     protected int jumpPower = 16;
-    protected float attackInterval = .5f;
     protected float intervalCounter = 0;
-    protected float attakDuration = 0.5f;
     protected float durationCounter = 0;
     protected int deathDelay = 2;
 
     public GameObject pref_bullet;
-    [HideInInspector]
-    public int maxHP = 100;
     [SerializeField]
-    public int currHP = 100;
-    protected int dmg = 10;
-    [HideInInspector]
-    public int range;
+    public int curHP;
 
     protected virtual void Awake() {
         //set component
@@ -59,6 +52,7 @@ public abstract class Doll : MonoBehaviour {
         //set variable
         vec_jump = new Vector2(0, jumpPower);
         trans_muzzle = transform.Find("muzzle");
+        curHP = status.maxHP;
     }
 
     protected virtual void Update() {
@@ -77,7 +71,7 @@ public abstract class Doll : MonoBehaviour {
         if (curr_state == CharacterState.die) return;
         if (durationCounter > 0) return;
 
-        vec_move = new Vector2(hori * speed, rigid.velocity.y);
+        vec_move = new Vector2(hori * status.speed, rigid.velocity.y);
         rigid.velocity = vec_move;
 
         bool moving = hori != 0;
@@ -112,8 +106,8 @@ public abstract class Doll : MonoBehaviour {
 
     public virtual void Attack() {
         Move(0);
-        intervalCounter = attackInterval;
-        durationCounter = attakDuration;
+        intervalCounter = status.attackInterval;
+        durationCounter = status.attackDuration;
         animator.SetTrigger(para_attack);
         curr_state = CharacterState.attack;
     }
@@ -126,8 +120,8 @@ public abstract class Doll : MonoBehaviour {
     protected abstract void Shoot();
 
     public virtual void Hit(BulletData bulletData) {
-        currHP -= bulletData.dmg;
-        if (currHP <= 0) {
+        curHP -= bulletData.dmg;
+        if (curHP <= 0) {
             Die();
         }
     }
@@ -157,6 +151,6 @@ public abstract class Doll : MonoBehaviour {
     }
     
     private void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, status.range);
     }
 }

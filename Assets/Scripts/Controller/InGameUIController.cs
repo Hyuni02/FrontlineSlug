@@ -36,10 +36,10 @@ public class InGameUIController : MonoBehaviour {
     }
 
     private void SetSlider() {
-        sld_HP.value = main.currHP;
+        sld_HP.value = main.curHP;
 
         if (InGameManager.instance.level >= 2 && sub != null) {
-            sld_HP_res.value = sub.currHP;
+            sld_HP_res.value = sub.curHP;
         }
     }
 
@@ -47,8 +47,8 @@ public class InGameUIController : MonoBehaviour {
         main = player;
 
         img_portrait.sprite = player.img_face;
-        sld_HP.maxValue = player.maxHP;
-        sld_HP.value = player.currHP;
+        sld_HP.maxValue = player.status.maxHP;
+        sld_HP.value = player.curHP;
 
         if (InGameManager.instance.level >= 2) {
             sub = rescue;
@@ -56,8 +56,8 @@ public class InGameUIController : MonoBehaviour {
             sld_HP_res.gameObject.SetActive(true);
 
             img_portrait_res.sprite = rescue.img_face;
-            sld_HP_res.maxValue = rescue.maxHP;
-            sld_HP_res.value = rescue.currHP;
+            sld_HP_res.maxValue = rescue.status.maxHP;
+            sld_HP_res.value = rescue.curHP;
         }
     }
 
@@ -67,8 +67,8 @@ public class InGameUIController : MonoBehaviour {
         sld_bossHP.gameObject.SetActive(true);
 
         img_bossPortrait.sprite = boss.img_face;
-        sld_bossHP.maxValue = boss.maxHP;
-        sld_bossHP.value = boss.currHP;
+        sld_bossHP.maxValue = boss.status.maxHP;
+        sld_bossHP.value = boss.curHP;
     }
 
     public void DisableBossUI() {
@@ -80,6 +80,6 @@ public class InGameUIController : MonoBehaviour {
         SetSlider();
 
         if (boss)
-            sld_bossHP.value = boss.currHP;
+            sld_bossHP.value = boss.curHP;
     }
 }

@@ -24,7 +24,7 @@ public abstract class Friendly : Doll {
             dir = (target.position - trans_muzzle.position).normalized;
             FlipModel((target.transform.position - transform.position).x < 0);
         }
-        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, status.dmg, 24, dir));
     }
 
     private void LateUpdate() {
@@ -32,7 +32,7 @@ public abstract class Friendly : Doll {
     }
 
     private void AutoAim() {
-        enemies = Physics2D.OverlapCircleAll(transform.position, range, LayerMask.GetMask("Enemy"));
+        enemies = Physics2D.OverlapCircleAll(transform.position, status.range, LayerMask.GetMask("Enemy"));
 
         Transform bestTarget = null;
         float closestDistanceSqr = Mathf.Infinity;

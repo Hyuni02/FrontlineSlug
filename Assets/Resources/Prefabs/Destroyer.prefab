@@ -157,12 +157,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   curr_state: 1
+  status: {fileID: 11400000, guid: 5805f2b941aec704ea45f2cf31a1a236, type: 2}
   pref_bullet: {fileID: 4265736592315137750, guid: a905c9c601ad54d46a2bf9f860528ea2, type: 3}
   maxHP: 100
-  currHP: 100
+  curHP: 0
   range: 0
   img_face: {fileID: 21300000, guid: 2186453ef95df4947ab6d71d14d0bc2f, type: 3}
   trigger: {fileID: 0}
+  trans_rain: {fileID: 0}
 --- !u!114 &5180514676702034825
 MonoBehaviour:
   m_ObjectHideFlags: 0

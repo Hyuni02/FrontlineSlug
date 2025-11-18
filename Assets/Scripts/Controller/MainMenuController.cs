@@ -107,13 +107,13 @@ public class MainMenuController : MonoBehaviour {
     private string CharacterState(string name) {
         switch (name) {
             case "Kar98k":
-                return "speed : 4\r\ndmg : 90\r\nattack speed : 2\r\nHP : 100\r\nrange : 16";
+                return $"speed : 4\r\ndmg : 90\r\nattack speed : 2\r\nHP : 100\r\nrange : 16";
             case "MP7":
-                return "speed : 7\r\ndmg : 10\r\nattack speed : 1\r\nHP : 80\r\nrange : 10";
+                return $"speed : 7\r\ndmg : 10\r\nattack speed : 1\r\nHP : 80\r\nrange : 10";
             case "M4SOPMODII":
-                return "speed : 5\r\ndmg : 20\r\nattack speed : 1.5\r\nHP : 100\r\nrange : 13";
+                return $"speed : 5\r\ndmg : 20\r\nattack speed : 1.5\r\nHP : 100\r\nrange : 13";
             case "SAT8":
-                return "speed : 4\r\ndmg : 40*3\r\nattack speed : 1.5\r\nHP : 120\r\nrange : 7";
+                return $"speed : 4\r\ndmg : 40*3\r\nattack speed : 1.5\r\nHP : 120\r\nrange : 7";
             default:
                 return "";
         }

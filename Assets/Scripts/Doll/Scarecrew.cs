@@ -7,13 +7,6 @@ public class Scarecrew : Boss {
     protected override void Awake() {
         base.Awake();
 
-        speed = 7;
-        dmg = 20;
-        attackInterval = 2;
-        maxHP = 400;
-        currHP = 400;
-        range = 30;
-
         trans_muzzle2 = transform.Find("muzzle2");
         trans_muzzle3 = transform.Find("muzzle3");
     }
@@ -48,11 +41,11 @@ public class Scarecrew : Boss {
     protected void Shoot2() {
         GameObject obj = Instantiate(pref_bullet, trans_muzzle2.position, Quaternion.identity);
         Vector2 dir = (PlayerController.instance.curDoll.transform.position - trans_muzzle2.position).normalized;
-        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, status.dmg, 24, dir));
     }
     protected void Shoot3() {
         GameObject obj = Instantiate(pref_bullet, trans_muzzle3.position, Quaternion.identity);
         Vector2 dir = (PlayerController.instance.curDoll.transform.position - trans_muzzle3.position).normalized;
-        obj.GetComponent<Bullet>().init(new BulletData(gameObject, dmg, 24, dir));
+        obj.GetComponent<Bullet>().init(new BulletData(gameObject, status.dmg, 24, dir));
     }
 }

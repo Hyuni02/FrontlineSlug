@@ -70,9 +70,9 @@ public class PlayerController : MonoBehaviour {
 
         //개발자 치트코드
         if (Input.GetKeyDown(KeyCode.P)) {
-            player.currHP = player.maxHP;
+            player.curHP = player.status.maxHP;
             if (player_rescue) {
-                player_rescue.currHP = player_rescue.maxHP;
+                player_rescue.curHP = player_rescue.status.maxHP;
             }
         }
     }
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour {
             curDoll = player_rescue;
             player_rescue.transform.position = trans_changePos.position;
             player_rescue.gameObject.SetActive(true);
-            if (player.currHP > 0) {
+            if (player.curHP > 0) {
                 player.gameObject.SetActive(false);
             }
             InGameUIController.instance.SetSlider(player_rescue, player);
@@ -98,7 +98,7 @@ public class PlayerController : MonoBehaviour {
             curDoll = player;
             player.transform.position = trans_changePos.position;
             player.gameObject.SetActive(true);
-            if (player_rescue.currHP > 0) {
+            if (player_rescue.curHP > 0) {
                 player_rescue.gameObject.SetActive(false);
             }
             InGameUIController.instance.SetSlider(player, player_rescue);
